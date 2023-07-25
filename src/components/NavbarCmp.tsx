@@ -21,7 +21,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-const Links = ["Dashboard", "Projects", "Team"];
+const Links = ["Home", "TV Series", "Movies", "My List", "New/Popular"];
 
 const NavLink = (props: Props) => {
   const { children } = props;
@@ -94,10 +94,10 @@ export default function NavbarCmp() {
                 />
               </MenuButton>
               <MenuList>
-                <MenuItem>Link 1</MenuItem>
-                <MenuItem>Link 2</MenuItem>
+                <MenuItem>Account</MenuItem>
+                <MenuItem>Settings</MenuItem>
                 <MenuDivider />
-                <MenuItem>Link 3</MenuItem>
+                <MenuItem>Sign Out</MenuItem>
               </MenuList>
             </Menu>
           </Flex>
@@ -114,7 +114,7 @@ export default function NavbarCmp() {
         ) : null}
       </Box>
 
-      <Box p={4}>Main Content Here</Box>
+      <Box p={4} display={"none"}>Main Content Here</Box>
     </>
   );
 }
