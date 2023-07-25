@@ -1,10 +1,12 @@
 "use client";
-import { Container, Box } from "@chakra-ui/react";
+import { Container, Box, Text } from "@chakra-ui/react";
 
 const Home = () => {
   return (
     <Container>
-      <Box></Box>
+      <Box>
+        <Text>something is here</Text>
+      </Box>
     </Container>
   );
 };
