@@ -1,6 +1,6 @@
 import {
   Box,
-  Text,
+  Image,
   Flex,
   Avatar,
   HStack,
@@ -47,7 +47,7 @@ export default function NavbarCmp() {
 
   return (
     <>
-      <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
+      <Box bg={"transparent"} px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
             size={"md"}
@@ -57,7 +57,13 @@ export default function NavbarCmp() {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={"center"}>
-            <Box>Logo</Box>
+            <Box>
+              <Image
+                src="/images/cineverse-logo.png"
+                alt="logo"
+                width={"20%"}
+              />
+            </Box>
             <HStack
               as={"nav"}
               spacing={4}
@@ -69,15 +75,6 @@ export default function NavbarCmp() {
             </HStack>
           </HStack>
           <Flex alignItems={"center"}>
-            <Button
-              variant={"solid"}
-              colorScheme={"teal"}
-              size={"sm"}
-              mr={4}
-              leftIcon={<AddIcon />}
-            >
-              Action
-            </Button>
             <Menu>
               <MenuButton
                 as={Button}
@@ -86,12 +83,7 @@ export default function NavbarCmp() {
                 cursor={"pointer"}
                 minW={0}
               >
-                <Avatar
-                  size={"sm"}
-                  src={
-                    "https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
-                  }
-                />
+                <Avatar size={"sm"} />
               </MenuButton>
               <MenuList>
                 <MenuItem>Account</MenuItem>
@@ -114,7 +106,9 @@ export default function NavbarCmp() {
         ) : null}
       </Box>
 
-      <Box p={4} display={"none"}>Main Content Here</Box>
+      <Box p={4} display={"none"}>
+        Main Content Here
+      </Box>
     </>
   );
 }
