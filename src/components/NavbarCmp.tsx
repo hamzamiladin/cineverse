@@ -15,7 +15,7 @@ import {
   useColorModeValue,
   Stack,
 } from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon, AddIcon } from "@chakra-ui/icons";
+import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 
 interface Props {
   children: React.ReactNode;
@@ -47,7 +47,7 @@ export default function NavbarCmp() {
 
   return (
     <>
-      <Box bg={"transparent"} px={4}>
+      <Box px={4} bg="#000" color="gray.300">
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
             size={"md"}
@@ -61,7 +61,7 @@ export default function NavbarCmp() {
               <Image
                 src="/images/cineverse-logo.png"
                 alt="logo"
-                width={"20%"}
+                width={"35%"}
               />
             </Box>
             <HStack

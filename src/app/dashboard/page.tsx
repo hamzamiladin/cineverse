@@ -1,13 +1,12 @@
+"use client";
 import { Box, Text } from "@chakra-ui/react";
 
-const Home = () => {
+export default function Home() {
   return (
     <>
-      <Box>
+      <Box bg={"gray.900"}>
         <Text>Home</Text>
       </Box>
     </>
   );
-};
-
-export default Home;
+}
