@@ -1,5 +1,5 @@
 "use client";
-import { Container, Box, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import LoginCmp from "@/components/login/LoginCmp";
 
 export default function Login() {
