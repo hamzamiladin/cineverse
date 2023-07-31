@@ -5,6 +5,7 @@ const FooterCmp = () => {
     <Box>
       <Text>FooterCmp</Text>
       <Box></Box>
+      <Box></Box>
     </Box>
   );
 };
