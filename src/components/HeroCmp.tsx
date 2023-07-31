@@ -7,6 +7,7 @@ const HeroCmp = () => {
         <Text>Hello Guest</Text>
       </Box>
       <Box></Box>
+      <Box></Box>
     </Flex>
   );
 };
