@@ -11,7 +11,7 @@ const LoginCmp = () => {
   return (
     <Flex
       w={"full"}
-      h={"100vh"}
+      h={"94vh"}
       backgroundImage={"url('images/projector.jpg')"}
       backgroundSize={"cover"}
       backgroundPosition={"center center"}
@@ -44,7 +44,7 @@ const LoginCmp = () => {
               bg={"orange.600"}
               rounded={"lg"}
               color={"white"}
-              _hover={{ bg: "blue.500" }}
+              _hover={{ bg: "orange.800" }}
             >
               Show me more
             </Button>

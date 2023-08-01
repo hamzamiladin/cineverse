@@ -16,6 +16,7 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+// import "./styles/index.css";
 
 interface Props {
   children: React.ReactNode;
@@ -112,3 +113,27 @@ export default function NavbarCmp() {
     </>
   );
 }
+
+export const LoginNav = () => {
+  return (
+    <Box className="container">
+      <Flex
+        px={10}
+        h={16}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+        className="card"
+        bg={"#000"}
+      >
+        <Box>
+          <Image src="/images/cineverse-logo.png" alt="logo" width={"35%"} />
+        </Box>
+        <Box>
+          <Button colorScheme="orange" variant="outline" size={"sm"}>
+            Sign In
+          </Button>
+        </Box>
+      </Flex>
+    </Box>
+  );
+};

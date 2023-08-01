@@ -4,6 +4,9 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ChakraProvider } from "@chakra-ui/react";
+import NavbarCmp from "@/components/NavbarCmp";
+import { LoginNav } from "@/components/NavbarCmp";
+import { usePathname } from "next/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,11 +20,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
 
   return (
     <html lang="en">
       <body className={inter.className}>
         <ChakraProvider>
+          {pathname === "/" ? <LoginNav /> : <NavbarCmp />}
           {children}
         </ChakraProvider>
       </body>
