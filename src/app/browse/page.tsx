@@ -1,13 +1,11 @@
 "use client";
-import { Box, Text } from "@chakra-ui/react";
+
+import HeroCmp from "@/components/HeroCmp";
 
 export default function Home() {
   return (
     <>
-      <Box>
-        <Text></Text>
-      </Box>
+      <HeroCmp />
     </>
   );
-};
-
+}

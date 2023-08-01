@@ -16,13 +16,14 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import { AiOutlineUser } from "react-icons/ai";
 // import "./styles/index.css";
 
 interface Props {
   children: React.ReactNode;
 }
 
-const Links = ["Home", "TV Series", "Movies", "My List", "New/Popular"];
+const links = ["Home", "TV Series", "Movies", "My List", "New/Popular"];
 
 const NavLink = (props: Props) => {
   const { children } = props;
@@ -56,13 +57,14 @@ export default function NavbarCmp() {
             aria-label={"Open Menu"}
             display={{ md: "none" }}
             onClick={isOpen ? onClose : onOpen}
+            bg={"gray.300"}
           />
           <HStack spacing={8} alignItems={"center"}>
             <Box>
               <Image
                 src="/images/cineverse-logo.png"
                 alt="logo"
-                width={"35%"}
+                width={{ base: "60%", md: "35%" }}
               />
             </Box>
             <HStack
@@ -70,7 +72,7 @@ export default function NavbarCmp() {
               spacing={4}
               display={{ base: "none", md: "flex" }}
             >
-              {Links.map((link) => (
+              {links.map((link) => (
                 <NavLink key={link}>{link}</NavLink>
               ))}
             </HStack>
@@ -84,7 +86,11 @@ export default function NavbarCmp() {
                 cursor={"pointer"}
                 minW={0}
               >
-                <Avatar size={"sm"} />
+                <Avatar
+                  size={"sm"}
+                  icon={<AiOutlineUser />}
+                  fontSize={"1.4rem"}
+                />
               </MenuButton>
               <MenuList>
                 <MenuItem>Account</MenuItem>
@@ -99,7 +105,7 @@ export default function NavbarCmp() {
         {isOpen ? (
           <Box pb={4} display={{ md: "none" }}>
             <Stack as={"nav"} spacing={4}>
-              {Links.map((link) => (
+              {links.map((link) => (
                 <NavLink key={link}>{link}</NavLink>
               ))}
             </Stack>
