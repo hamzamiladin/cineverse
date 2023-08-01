@@ -1,12 +1,7 @@
 "use client";
-import { Container, Box } from "@chakra-ui/react";
 
-const Home = () => {
-  return (
-    <Container>
-      <Box></Box>
-    </Container>
-  );
-};
+import LoginCmp from "@/components/login/LoginCmp";
 
-export default Home;
+export default function Login() {
+  return <LoginCmp />;
+}

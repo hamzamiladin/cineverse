@@ -1,10 +1,14 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Text, Flex } from "@chakra-ui/react";
 
 const HeroCmp = () => {
   return (
-    <Box>
-      <Text>HeroCmp</Text>
-    </Box>
+    <Flex>
+      <Box>
+        <Text>Hello Guest</Text>
+      </Box>
+      <Box></Box>
+      <Box></Box>
+    </Flex>
   );
 };
 
