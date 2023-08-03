@@ -14,6 +14,7 @@ const requests = {
   getDrama: `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US&with_genres=18`,
   getAnimation: `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US&with_genres=16`,
   getAdventure: `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US&with_genres=12`,
+  getHorror: `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US&with_genres=27`,
   /* series section */
   getLatestSeries: `${BASE_URL}/tv/latest?api_key=${API_KEY}&language=en-US?`,
   getDocSeries: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=en-US&with_genres=99`,
@@ -21,13 +22,14 @@ const requests = {
   getRealitySeries: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=en-US&with_genres=10764`,
   getKidSeries: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=en-US&with_genres=10762`,
   getFamilySeries: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=en-US&with_genres=10751`,
+
   /* authentication */
   getRequestToken: `${BASE_URL}/authentication/token/new?api_key=${API_KEY}&language=en-US`,
   /* ask user for permission */
   // https://www.themoviedb.org/authenticate/{REQUEST_TOKEN}
 
+  /* movie casts - requires movie id */
+  /* getMovieCasts: `${BASE_URL}/movie/{MOVIE_ID}?api_key=${API_KEY}&language=en-US`, */
 };
-
-
 
 export default requests;
