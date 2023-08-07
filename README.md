@@ -1,4 +1,20 @@
-# cineverse
+# Cineverse
+
+## About this Project
+Cineverse is a movie web app that provides users with different collections of movies and tv series.
+
+- users can login successfully into the app,
+- home page is displayed on successful login,
+- home page displays multiple rows containing different genres of movies,
+- users can search for any movie or tv series,
+- users can create lists, add and remove movies,
+- users can add movies to favorite,
+- users can watch the movie trailers,
+- users can view the info of any movie or tv series,
+- users can sign out successfully. 
+
+## Milestones
+
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
