@@ -7,6 +7,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import NavbarCmp from "@/components/NavbarCmp";
 import { LoginNav } from "@/components/NavbarCmp";
 import { usePathname } from "next/navigation";
+import { register } from "swiper/element/bundle";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  register();
 
   return (
     <html lang="en">

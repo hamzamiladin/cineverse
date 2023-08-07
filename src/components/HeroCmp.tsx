@@ -1,14 +1,25 @@
-import { Box, Text, Flex } from "@chakra-ui/react";
+import { Box, Text, Flex, Container, Input } from "@chakra-ui/react";
+import SwiperImages from "./SwiperImages";
 
 const HeroCmp = () => {
   return (
-    <Flex>
-      <Box>
-        <Text>Hello Guest</Text>
+    <Container bg={"#212121"} maxW={""} h={"100vh"} centerContent>
+      <Box mt={4}>
+        <form>
+          <Input
+            variant="flushed"
+            focusBorderColor="orange.400"
+            placeholder="search"
+            color="gray.200"
+            w={"40vw"}
+          />
+        </form>
       </Box>
-      <Box></Box>
-      <Box></Box>
-    </Flex>
+      {/* main content */}
+      <Box mt={3}>
+        <SwiperImages />
+      </Box>
+    </Container>
   );
 };
 
