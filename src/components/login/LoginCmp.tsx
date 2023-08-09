@@ -7,7 +7,10 @@ import {
   useBreakpointValue,
 } from "@chakra-ui/react";
 
+
 const LoginCmp = () => {
+  //const routeToHome = 
+
   return (
     <Flex
       w={"full"}
@@ -45,6 +48,7 @@ const LoginCmp = () => {
               rounded={"lg"}
               color={"white"}
               _hover={{ bg: "orange.800" }}
+              onClick={() => {}}
             >
               Show me more
             </Button>

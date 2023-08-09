@@ -74,3 +74,10 @@ export interface MovieCast {
   character?: string;
   order: number;
 }
+
+export interface Video {
+  name: string
+  key: string
+  site: string
+  type: string
+}
