@@ -1,10 +1,10 @@
-import { Box, Text, Flex, Container, Input, Button } from "@chakra-ui/react";
+import { Box, Text, Flex, Input, Button } from "@chakra-ui/react";
 import SwiperImages from "./SwiperImages";
 import "./styles/buttons.css";
 
-const HeroCmp = () => {
+const SearchCmp = () => {
   return (
-    <Container bg={"#212121"} maxW={""} h={"100vh"} centerContent>
+    <>
       <Box mt={4}>
         <form>
           <Flex flexDir={"row"} gap={7}>
@@ -25,10 +25,9 @@ const HeroCmp = () => {
           </Flex>
         </form>
       </Box>
-      {/* main content */}
-      <Box mt={3}>{/* <SwiperImages /> */}</Box>
-    </Container>
+      {/* Banner */}
+    </>
   );
 };
 
-export default HeroCmp;
+export default SearchCmp;
