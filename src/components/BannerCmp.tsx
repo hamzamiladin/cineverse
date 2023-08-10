@@ -14,12 +14,12 @@ const Banner = ({ cineverseOriginals }: Props) => {
   useEffect(() => {
     setShowMovie(
       cineverseOriginals[Math.floor(Math.random() * cineverseOriginals.length)]
-    )
+    );
   }, [cineverseOriginals]);
 
   return (
     <>
-      <Box>
+      <Box mt={12}>
         <Box>
           <Image
             src={`${baseUrl}${
@@ -27,7 +27,7 @@ const Banner = ({ cineverseOriginals }: Props) => {
             }`}
             alt="movie poster"
             width={1280}
-            height={900}
+            height={800}
           />
         </Box>
         <Box>
