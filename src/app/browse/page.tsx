@@ -27,7 +27,9 @@ const Home: React.FC<Props> = () => {
   return (
     <Container bg={"#212121"} maxW={""} centerContent>
       <SearchCmp />
+
       <Banner cineverseOriginals={cineverseOriginals || []} />
+
       <Box mt={3}>
         {/* popular movies */}
         {/* trending now */}

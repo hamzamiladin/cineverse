@@ -26,6 +26,14 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
+        />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <title>Cineverse</title>
+      </head>
       <body className={inter.className}>
         <ChakraProvider>
           {pathname === "/" ? <LoginNav /> : <NavbarCmp />}
