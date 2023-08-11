@@ -15,6 +15,7 @@ interface Props {
 }
 
 const Banner = ({ cineverseOriginals }: Props) => {
+  const slicedMovies = cineverseOriginals.slice(0, 10);
   return (
     <Box mt={12} maxW={{ base: "80%", md: "70%" }}>
       <Swiper
@@ -24,29 +25,28 @@ const Banner = ({ cineverseOriginals }: Props) => {
         modules={[Pagination, Navigation, Autoplay]}
         className="mySwiper"
       >
-        {cineverseOriginals.slice(0, 10) &&
-          cineverseOriginals.map((movie, idx) => (
-            <SwiperSlide key={idx} className={style.swiperSlide}>
-              <Image
-                src={`${baseUrl}${movie.backdrop_path || movie.poster_path}`}
-                alt="movie poster"
-                width={1280}
-                height={800}
-              />
-              <Box>
-                <Text color={"#fff"} fontWeight={700} fontSize={"3xl"}>
-                  {movie.original_title || movie.title}
-                </Text>
-                <Text color={"#fff"} fontSize={"xl"}>
-                  {movie.overview}
-                </Text>
-              </Box>
-              <Flex gap={6}>
-                <Button>Play</Button>
-                <Button>More Info</Button>
-              </Flex>
-            </SwiperSlide>
-          ))}
+        {slicedMovies.map((movie, idx) => (
+          <SwiperSlide key={idx} className={style.swiperSlide}>
+            <Image
+              src={`${baseUrl}${movie.backdrop_path || movie.poster_path}`}
+              alt="movie poster"
+              width={1280}
+              height={800}
+            />
+            <Box>
+              <Text color={"#fff"} fontWeight={700} fontSize={"3xl"}>
+                {movie.original_title || movie.title}
+              </Text>
+              <Text color={"#fff"} fontSize={"xl"}>
+                {movie.overview}
+              </Text>
+            </Box>
+            <Flex gap={6}>
+              <Button>Play</Button>
+              <Button>More Info</Button>
+            </Flex>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </Box>
   );
