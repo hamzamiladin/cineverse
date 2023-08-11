@@ -1,11 +1,12 @@
 "use client";
 
 import SearchCmp from "@/components/SearchCmp";
-import { Box, Container } from "@chakra-ui/react";
+import { Box, Container, Text } from "@chakra-ui/react";
 import { Movie } from "../../../typings";
 import Banner from "@/components/BannerCmp";
 import useSWR from "swr";
 import * as fetchers from "../../utils/fetchData";
+import MovieRow from "@/components/MovieRow";
 
 interface Props {
   cineverseOriginals: Movie[];
@@ -14,6 +15,7 @@ interface Props {
   actionMovies: Movie[];
   comedyMovies: Movie[];
   kidsSeries: Movie[];
+  realitySeries: Movie[];
   romanceMovies: Movie[];
 }
 
@@ -22,7 +24,25 @@ const Home: React.FC<Props> = () => {
     "cineverseOriginals",
     fetchers.fetchCineverseOriginals
   );
-  /* console.log(cineverseOriginals); */
+  const { data: popularMovies } = useSWR(
+    "popularMovies",
+    fetchers.fetchPopular
+  );
+  const { data: trendingNow } = useSWR(
+    "trendingNow",
+    fetchers.fetchTrendingMovies
+  );
+  const { data: actionMovies } = useSWR("actionMovies", fetchers.fetchAction);
+  const { data: comedyMovies } = useSWR("comedyMovies", fetchers.fetchComedy);
+  const { data: kidsSeries } = useSWR("kidsSeries", fetchers.fetchKidSeries);
+  const { data: realitySeries } = useSWR(
+    "realitySeries",
+    fetchers.fetchRealitySeries
+  );
+  const { data: romanceMovies } = useSWR(
+    "romanceMovies",
+    fetchers.fetchRomance
+  );
 
   return (
     <Container bg={"#212121"} maxW={""} centerContent>
@@ -32,11 +52,55 @@ const Home: React.FC<Props> = () => {
 
       <Box mt={3}>
         {/* popular movies */}
+        <Box>
+          <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
+            Popular Movies
+          </Text>
+          <MovieRow movies={popularMovies || []} />
+        </Box>
+
         {/* trending now */}
+        <Box mt={14}>
+          <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
+            Trending Now
+          </Text>
+          <MovieRow movies={trendingNow || []} />
+        </Box>
         {/* action movies */}
+        <Box mt={14}>
+          <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
+            Action Movies
+          </Text>
+          <MovieRow movies={actionMovies || []} />
+        </Box>
         {/* comedy movies */}
+        <Box mt={14}>
+          <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
+            Comedy Movies
+          </Text>
+          <MovieRow movies={comedyMovies || []} />
+        </Box>
         {/* kid series */}
+        <Box mt={14}>
+          <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
+            Kids Series
+          </Text>
+          <MovieRow movies={kidsSeries || []} />
+        </Box>
+        {/* reality series */}
+        <Box mt={14}>
+          <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
+            Reality Series
+          </Text>
+          <MovieRow movies={realitySeries || []} />
+        </Box>
         {/* romance movies */}
+        <Box mt={14}>
+          <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
+            Romance Movies
+          </Text>
+          <MovieRow movies={romanceMovies || []} />
+        </Box>
       </Box>
     </Container>
   );

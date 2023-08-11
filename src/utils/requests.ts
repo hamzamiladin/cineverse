@@ -4,7 +4,7 @@ export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 const requests = {
   /* searchMovies: `${BASE_URL}/search/movie?{QUERY}&include_adult=false&language=en-US&page=1`, */
   //get latest movies banner
-  getCineverseOriginals: `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc`,
+  getCineverseOriginals: `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&page=2`,
   getTrendingMovies: `${BASE_URL}/trending/movie/day?api_key=${API_KEY}&language=en-US?`,
   getTrendingSeries: `${BASE_URL}/trending/tv/day?api_key=${API_KEY}&language=en-US?`,
   getPopular: `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US?`,

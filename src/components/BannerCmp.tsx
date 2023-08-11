@@ -17,7 +17,7 @@ interface Props {
 const Banner = ({ cineverseOriginals }: Props) => {
   const slicedMovies = cineverseOriginals.slice(0, 10);
   return (
-    <Box mt={12} maxW={{ base: "80%", md: "70%" }}>
+    <Box mt={12} maxW={{ base: "80%", md: "80%" }}>
       <Swiper
         pagination={{ type: "progressbar" }}
         navigation={false}
@@ -26,25 +26,35 @@ const Banner = ({ cineverseOriginals }: Props) => {
         className="mySwiper"
       >
         {slicedMovies.map((movie, idx) => (
-          <SwiperSlide key={idx} className={style.swiperSlide}>
-            <Image
-              src={`${baseUrl}${movie.backdrop_path || movie.poster_path}`}
-              alt="movie poster"
-              width={1280}
-              height={800}
-            />
-            <Box>
-              <Text color={"#fff"} fontWeight={700} fontSize={"3xl"}>
+          <SwiperSlide
+            key={idx}
+            className={style.swiperSlide}
+            style={{
+              backgroundImage: `url(${baseUrl}${
+                movie.backdrop_path || movie.poster_path
+              })`,
+              backgroundSize: "cover",
+              minHeight: "60vh",
+            }}
+          >
+            <Box
+              display={"flex"}
+              flexDir={"column"}
+              pos={{ md: "absolute" }}
+              bottom={0}
+              p={8}
+            >
+              <Text color={"#fff"} fontWeight={700} fontSize={"2xl"}>
                 {movie.original_title || movie.title}
               </Text>
-              <Text color={"#fff"} fontSize={"xl"}>
+              <Text color={"#fff"} fontSize={"lg"}>
                 {movie.overview}
               </Text>
+              <Flex gap={6}>
+                <Button>Play</Button>
+                <Button>More Info</Button>
+              </Flex>
             </Box>
-            <Flex gap={6}>
-              <Button>Play</Button>
-              <Button>More Info</Button>
-            </Flex>
           </SwiperSlide>
         ))}
       </Swiper>
