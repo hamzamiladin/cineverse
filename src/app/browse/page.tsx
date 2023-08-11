@@ -7,6 +7,7 @@ import Banner from "@/components/BannerCmp";
 import useSWR from "swr";
 import * as fetchers from "../../utils/fetchData";
 import MovieRow from "@/components/MovieRow";
+import FooterCmp from "@/components/FooterCmp";
 
 interface Props {
   cineverseOriginals: Movie[];
@@ -102,6 +103,7 @@ const Home: React.FC<Props> = () => {
           <MovieRow movies={romanceMovies || []} />
         </Box>
       </Box>
+      <FooterCmp />
     </Container>
   );
 };
