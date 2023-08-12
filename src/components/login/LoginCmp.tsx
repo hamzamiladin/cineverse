@@ -7,10 +7,7 @@ import {
   useBreakpointValue,
 } from "@chakra-ui/react";
 
-
 const LoginCmp = () => {
-  //const routeToHome = 
-
   return (
     <Flex
       w={"full"}

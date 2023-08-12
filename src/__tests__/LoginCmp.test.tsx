@@ -11,4 +11,14 @@ describe("LoginCmp", () => {
       </ChakraProvider>
     );
   });
+
+  it("should display a button", () => {
+    const { getByRole } = render(
+      <ChakraProvider>
+        <LoginCmp />
+      </ChakraProvider>
+    );
+    const button = getByRole("button");
+    expect(button).toBeInTheDocument();
+  });
 });
