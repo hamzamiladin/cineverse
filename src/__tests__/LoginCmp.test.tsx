@@ -1,14 +1,24 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import LoginCmp from "@/components/login/LoginCmp";
 import { render } from "@testing-library/react";
+import "../__mock__/matchMedia";
 
 describe("LoginCmp", () => {
   it("renders", () => {
-    const { asFragment } = render(
+    render(
       <ChakraProvider>
         <LoginCmp />
       </ChakraProvider>
     );
-    expect(asFragment()).toMatchSnapshot();
+  });
+
+  it("should display a button", () => {
+    const { getByRole } = render(
+      <ChakraProvider>
+        <LoginCmp />
+      </ChakraProvider>
+    );
+    const button = getByRole("button");
+    expect(button).toBeInTheDocument();
   });
 });

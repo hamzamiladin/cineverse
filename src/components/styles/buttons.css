@@ -1,0 +1,16 @@
+/* search button */
+.search-btn {
+  transition: ease-out 0.5s;
+  border: 2px solid #c63b3b;
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 0 #c63b3b;
+}
+
+.search-btn:hover {
+  color: white;
+  box-shadow: inset 0 -100px 0 0 #c63b3b;
+}
+
+.search-btn:active {
+  transform: scale(0.9);
+}

@@ -2,14 +2,12 @@
 
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { inter } from "./fonts";
 import { ChakraProvider } from "@chakra-ui/react";
 import NavbarCmp from "@/components/NavbarCmp";
 import { LoginNav } from "@/components/NavbarCmp";
 import { usePathname } from "next/navigation";
 import { register } from "swiper/element/bundle";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Cineverse Movie App",
@@ -26,6 +24,14 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
+        />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <title>Cineverse</title>
+      </head>
       <body className={inter.className}>
         <ChakraProvider>
           {pathname === "/" ? <LoginNav /> : <NavbarCmp />}

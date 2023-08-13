@@ -45,6 +45,7 @@ const LoginCmp = () => {
               rounded={"lg"}
               color={"white"}
               _hover={{ bg: "orange.800" }}
+              onClick={() => {}}
             >
               Show me more
             </Button>
