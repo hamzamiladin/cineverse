@@ -78,13 +78,13 @@ export const fetchHorror = async () => {
   return data.results;
 };
 
-export const fetchLatestSeries = async () => {
-  const res = await fetch(requests.getLatestSeries);
+export const fetchPopularSeries = async () => {
+  const res = await fetch(requests.getPopularSeries);
   const data = await res.json();
   return data.results;
 };
 
-export const fetchDocSeries = async () => {
+export const fetchDocSeries: any = async () => {
   const res = await fetch(requests.getDocSeries);
   const data = await res.json();
   return data.results;
@@ -110,6 +110,12 @@ export const fetchKidSeries = async () => {
 
 export const fetchFamilySeries = async () => {
   const res = await fetch(requests.getFamilySeries);
+  const data = await res.json();
+  return data.results;
+};
+
+export const fetchMysterySeries = async () => {
+  const res = await fetch(requests.getMysterySeries);
   const data = await res.json();
   return data.results;
 };

@@ -15,13 +15,33 @@ interface Props {
 
 const MovieRow = ({ movies }: Props) => {
   return (
-    <Box w={"80vw"}>
+    <Box w={{ base: "97vw", md: "80vw" }}>
       <Swiper
-        slidesPerView={5}
-        spaceBetween={30}
+        slidesPerView={2}
+        spaceBetween={7}
         navigation={true}
         modules={[Pagination, Navigation]}
+        breakpoints={{
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 25,
+          },
+          1024: {
+            slidesPerView: 5,
+            spaceBetween: 30,
+          },
+        }}
         className="mySwiper"
+        injectStyles={[
+          `.swiper-button-next .swiper-button-prev {
+            color: red;
+            border: 2px solid black;
+          }`,
+        ]}
       >
         {movies.map((movie, idx) => (
           <SwiperSlide
@@ -30,8 +50,8 @@ const MovieRow = ({ movies }: Props) => {
             style={{
               backgroundImage: `url(${baseUrl}${movie?.poster_path})`,
               backgroundSize: "cover",
-              minHeight: "44vh",
-              minWidth: "13vw",
+              height: "44vh",
+              width: "13vw",
             }}
           >
             {/* <Text color={"#fff"} fontWeight={700} fontSize={"lg"}>

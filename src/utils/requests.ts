@@ -18,12 +18,13 @@ const requests = {
   getAdventure: `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US&with_genres=12`,
   getHorror: `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US&with_genres=27`,
   /* series section */
-  getLatestSeries: `${BASE_URL}/tv/latest?api_key=${API_KEY}&language=en-US?`,
+  getPopularSeries: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc`,
   getDocSeries: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=en-US&with_genres=99`,
   getActionSeries: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=en-US&with_genres=10759`,
   getRealitySeries: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=en-US&with_genres=10764`,
   getKidSeries: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=en-US&with_genres=10762`,
   getFamilySeries: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=en-US&with_genres=10751`,
+  getMysterySeries: `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=en-US&with_genres=9648`,
 
   /* authentication */
   getRequestToken: `${BASE_URL}/authentication/token/new?api_key=${API_KEY}&language=en-US`,
