@@ -1,14 +1,16 @@
 "use client";
-import { useRouter, usePathname } from "next/navigation";
-import { Container, Box } from "@chakra-ui/react";
+import { useRouter, usePathname, useParams } from "next/navigation";
+import { Container, Box, Text } from "@chakra-ui/react";
 
 const SearchResultsPage = () => {
   const router = useRouter();
-  const pathname = usePathname();
-  console.log(pathname);
+  const movie = useParams().movie;
+  console.log(movie);
   return (
     <Container>
-      <Box>{}</Box>
+      <Box>
+        <Text>search:{movie}</Text>
+      </Box>
     </Container>
   );
 };
