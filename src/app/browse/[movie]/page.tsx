@@ -1,5 +1,5 @@
 "use client";
-import { useRouter, usePathname, useParams } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import { Container, Box, Text } from "@chakra-ui/react";
 
 const SearchResultsPage = () => {

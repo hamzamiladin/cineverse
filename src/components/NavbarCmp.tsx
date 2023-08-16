@@ -12,7 +12,6 @@ import {
   MenuItem,
   MenuDivider,
   useDisclosure,
-  useColorModeValue,
   Stack,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
@@ -57,7 +56,7 @@ export default function NavbarCmp() {
               <Image
                 src="/images/cineverse-logo.png"
                 alt="logo"
-                width={{ base: "60%", md: "35%" }}
+                boxSize={{ base: "60%", md: "35%" }}
               />
             </Box>
             <HStack
@@ -125,7 +124,7 @@ export const LoginNav = () => {
         bg={"#000"}
       >
         <Box>
-          <Image src="/images/cineverse-logo.png" alt="logo" width={"35%"} />
+          <Image src="/images/cineverse-logo.png" alt="logo" boxSize={"35%"} />
         </Box>
         <Box>
           <Button colorScheme="orange" variant="outline" size={"sm"}>
