@@ -13,10 +13,15 @@ const SearchCmp = () => {
     router.push(`/browse/${searchValue}`);
   };
 
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    handleSearch();
+  };
+
   return (
     <>
       <Box mt={4}>
-        <form>
+        <form onSubmit={handleSubmit}>
           <Flex flexDir={"row"} gap={7} alignItems={"center"}>
             <Input
               variant="flushed"
