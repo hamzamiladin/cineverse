@@ -1,5 +1,5 @@
 import { Box, Text, Flex } from "@chakra-ui/react";
-import { Movie } from "../../typings";
+import { Movie, SeriesDetails } from "../../typings";
 import { Pagination, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import style from "./styles/swiper.module.css";
@@ -8,9 +8,10 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { baseUrl } from "@/constants/movie";
+import Link from "next/link";
 
 interface Props {
-  movies: Movie[];
+  movies: (Movie | SeriesDetails)[];
 }
 
 const MovieRow = ({ movies }: Props) => {
@@ -44,20 +45,33 @@ const MovieRow = ({ movies }: Props) => {
         ]}
       >
         {movies.map((movie, idx) => (
-          <SwiperSlide
+          <Link href={`/browse/details/${(movie as Movie).title}}`} key={idx}>
+            <SwiperSlide
+              className={style.swiperSlide}
+              style={{
+                backgroundImage: `url(${baseUrl}${movie?.poster_path})`,
+                backgroundSize: "cover",
+                height: "44vh",
+                width: "13vw",
+              }}
+            />
+          </Link>
+        ))}
+        {movies.map((series, idx) => (
+          <Link
+            href={`/browse/details/${(series as SeriesDetails).name}`}
             key={idx}
-            className={style.swiperSlide}
-            style={{
-              backgroundImage: `url(${baseUrl}${movie?.poster_path})`,
-              backgroundSize: "cover",
-              height: "44vh",
-              width: "13vw",
-            }}
           >
-            {/* <Text color={"#fff"} fontWeight={700} fontSize={"lg"}>
-              {movie.original_title || movie.title}
-            </Text> */}
-          </SwiperSlide>
+            <SwiperSlide
+              className={style.swiperSlide}
+              style={{
+                backgroundImage: `url(${baseUrl}${series?.poster_path})`,
+                backgroundSize: "cover",
+                height: "44vh",
+                width: "13vw",
+              }}
+            />
+          </Link>
         ))}
       </Swiper>
     </Box>
