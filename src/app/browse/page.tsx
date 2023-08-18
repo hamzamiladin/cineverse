@@ -6,7 +6,7 @@ import { Movie } from "../../../typings";
 import Banner from "@/components/BannerCmp";
 import useSWR from "swr";
 import * as fetchers from "../../utils/fetchData";
-import MovieRow from "@/components/MovieRow";
+import MovieRow, { SeriesRow } from "@/components/MovieRow";
 import FooterCmp from "@/components/FooterCmp";
 
 interface Props {
@@ -86,14 +86,14 @@ const Home: React.FC<Props> = () => {
           <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
             Kids Series
           </Text>
-          <MovieRow movies={kidsSeries || []} />
+          <SeriesRow series={kidsSeries || []} />
         </Box>
         {/* reality series */}
         <Box mt={14}>
           <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
             Reality Series
           </Text>
-          <MovieRow movies={realitySeries || []} />
+          <SeriesRow series={realitySeries || []} />
         </Box>
         {/* romance movies */}
         <Box mt={14}>

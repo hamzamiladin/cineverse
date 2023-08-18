@@ -11,7 +11,8 @@ import { baseUrl } from "@/constants/movie";
 import Link from "next/link";
 
 interface Props {
-  movies: (Movie | SeriesDetails)[];
+  movies?: Movie[];
+  series?: SeriesDetails[];
 }
 
 const MovieRow = ({ movies }: Props) => {
@@ -44,8 +45,8 @@ const MovieRow = ({ movies }: Props) => {
           }`,
         ]}
       >
-        {movies.map((movie, idx) => (
-          <Link href={`/browse/details/${(movie as Movie).title}}`} key={idx}>
+        {movies?.map((movie) => (
+          <Link href={`/browse/details/${movie.title}}`} key={movie.id}>
             <SwiperSlide
               className={style.swiperSlide}
               style={{
@@ -57,15 +58,47 @@ const MovieRow = ({ movies }: Props) => {
             />
           </Link>
         ))}
-        {movies.map((series, idx) => (
-          <Link
-            href={`/browse/details/${(series as SeriesDetails).name}`}
-            key={idx}
-          >
+      </Swiper>
+    </Box>
+  );
+};
+
+export const SeriesRow = ({ series }: Props) => {
+  return (
+    <Box w={{ base: "97vw", md: "80vw" }}>
+      <Swiper
+        slidesPerView={2}
+        spaceBetween={7}
+        navigation={true}
+        modules={[Pagination, Navigation]}
+        breakpoints={{
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 25,
+          },
+          1024: {
+            slidesPerView: 5,
+            spaceBetween: 30,
+          },
+        }}
+        className="mySwiper"
+        injectStyles={[
+          `.swiper-button-next .swiper-button-prev {
+            color: red;
+            border: 2px solid black;
+          }`,
+        ]}
+      >
+        {series?.map((movie) => (
+          <Link href={`/browse/details/${movie.name}}`} key={movie.id}>
             <SwiperSlide
               className={style.swiperSlide}
               style={{
-                backgroundImage: `url(${baseUrl}${series?.poster_path})`,
+                backgroundImage: `url(${baseUrl}${movie?.poster_path})`,
                 backgroundSize: "cover",
                 height: "44vh",
                 width: "13vw",
