@@ -10,3 +10,5 @@ const DetailsPage = () => {
     </Container>
   );
 };
+
+export default DetailsPage;

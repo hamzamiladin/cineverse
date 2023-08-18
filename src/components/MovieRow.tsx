@@ -46,7 +46,10 @@ const MovieRow = ({ movies }: Props) => {
         ]}
       >
         {movies?.map((movie) => (
-          <Link href={`/browse/details/${movie.title}}`} key={movie.id}>
+          <Link
+            href={`/browse/details/${movie.title}/${movie.id}}`}
+            key={movie.id}
+          >
             <SwiperSlide
               className={style.swiperSlide}
               style={{
@@ -94,7 +97,10 @@ export const SeriesRow = ({ series }: Props) => {
         ]}
       >
         {series?.map((movie) => (
-          <Link href={`/browse/details/${movie.name}}`} key={movie.id}>
+          <Link
+            href={`/browse/details/${movie.name}/${movie.id}}`}
+            key={movie.id}
+          >
             <SwiperSlide
               className={style.swiperSlide}
               style={{
