@@ -1,11 +1,9 @@
 import { Box, Text, Flex, Input, Button } from "@chakra-ui/react";
 import "./styles/buttons.css";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const SearchCmp = () => {
-  // const pathname = usePathname();
-  // const query = useSearchParams();
   const router = useRouter();
   const [searchValue, setSearchValue] = useState("");
 

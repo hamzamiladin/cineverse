@@ -8,7 +8,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { baseUrl } from "@/constants/movie";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 interface Props {
