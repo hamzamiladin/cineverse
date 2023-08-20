@@ -4,7 +4,7 @@ import { SeriesDetails } from "../../../../typings";
 import SearchCmp from "@/components/SearchCmp";
 import useSWR from "swr";
 import * as fetchers from "../../../utils/fetchData";
-import MovieRow, { SeriesRow } from "@/components/MovieRow";
+import MovieRow from "@/components/MovieRow";
 import FooterCmp from "@/components/FooterCmp";
 
 interface Props {
@@ -56,56 +56,56 @@ const SeriesPage: React.FC<Props> = () => {
           <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
             Trending Shows
           </Text>
-          <SeriesRow series={trendingSeries || []} />
+          <MovieRow series={trendingSeries || []} />
         </Box>
         {/* popular */}
         <Box mt={14}>
           <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
             Popular Shows
           </Text>
-          <SeriesRow series={popularSeries || []} />
+          <MovieRow series={popularSeries || []} />
         </Box>
         {/* documentary */}
         <Box mt={14}>
           <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
             Documentary
           </Text>
-          <SeriesRow series={docSeries || []} />
+          <MovieRow series={docSeries || []} />
         </Box>
         {/* action */}
         <Box mt={14}>
           <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
             Action Shows
           </Text>
-          <SeriesRow series={actionSeries || []} />
+          <MovieRow series={actionSeries || []} />
         </Box>
         {/* reality */}
         <Box mt={14}>
           <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
             Reality Shows
           </Text>
-          <SeriesRow series={realitySeries || []} />
+          <MovieRow series={realitySeries || []} />
         </Box>
         {/* kids Series */}
         <Box mt={14}>
           <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
             Kid Shows
           </Text>
-          <SeriesRow series={kidsSeries || []} />
+          <MovieRow series={kidsSeries || []} />
         </Box>
         {/* family */}
         <Box mt={14}>
           <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
             Family Shows
           </Text>
-          <SeriesRow series={familySeries || []} />
+          <MovieRow series={familySeries || []} />
         </Box>
         {/* mystery */}
         <Box mt={14}>
           <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
             Mystery
           </Text>
-          <SeriesRow series={mysterySeries || []} />
+          <MovieRow series={mysterySeries || []} />
         </Box>
       </Box>
       <FooterCmp />
