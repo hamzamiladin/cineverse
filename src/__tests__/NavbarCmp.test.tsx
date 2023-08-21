@@ -1,7 +1,7 @@
-import NavbarCmp from "@/components/NavbarCmp";
-import { fireEvent, render, screen } from "@testing-library/react";
 import "../__mock__/matchMedia";
 import { ChakraProvider } from "@chakra-ui/react";
+import NavbarCmp from "@/components/NavbarCmp";
+import { fireEvent, render, screen } from "@testing-library/react";
 
 describe("NavbarCmp", () => {
   it("renders", () => {

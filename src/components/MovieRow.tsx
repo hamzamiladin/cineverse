@@ -1,5 +1,5 @@
 import { Box, Text, Flex } from "@chakra-ui/react";
-import { Movie } from "../../typings";
+import { Movie, SeriesDetails } from "../../typings";
 import { Pagination, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import style from "./styles/swiper.module.css";
@@ -8,36 +8,82 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { baseUrl } from "@/constants/movie";
+import { useRouter } from "next/navigation";
 
 interface Props {
-  movies: Movie[];
+  movies?: Movie[];
+  series?: SeriesDetails[];
 }
 
-const MovieRow = ({ movies }: Props) => {
+const MovieRow = ({ movies, series }: Props) => {
+  const router = useRouter();
+
+  const handleClick = (item: Movie | SeriesDetails) => {
+    if ("title" in item) {
+      router.push(
+        `/browse/details/${encodeURIComponent(item.title)}/${item.id}`
+      );
+    } else if ("name" in item) {
+      router.push(
+        `/browse/details/${encodeURIComponent(item.name)}/${item.id}`
+      );
+    }
+  };
+
   return (
-    <Box w={"80vw"}>
+    <Box w={{ base: "97vw", md: "80vw" }}>
       <Swiper
-        slidesPerView={5}
-        spaceBetween={30}
+        slidesPerView={2}
+        spaceBetween={7}
         navigation={true}
         modules={[Pagination, Navigation]}
+        breakpoints={{
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 25,
+          },
+          1024: {
+            slidesPerView: 5,
+            spaceBetween: 30,
+          },
+        }}
         className="mySwiper"
+        injectStyles={[
+          `.swiper-button-next .swiper-button-prev {
+            color: red;
+            border: 2px solid black;
+          }`,
+        ]}
       >
-        {movies.map((movie, idx) => (
+        {movies?.map((movie, idx) => (
           <SwiperSlide
-            key={idx}
+            key={`movie-${movie.id}-${idx}`}
             className={style.swiperSlide}
             style={{
               backgroundImage: `url(${baseUrl}${movie?.poster_path})`,
               backgroundSize: "cover",
-              minHeight: "44vh",
-              minWidth: "13vw",
+              height: "44vh",
+              width: "13vw",
             }}
-          >
-            {/* <Text color={"#fff"} fontWeight={700} fontSize={"lg"}>
-              {movie.original_title || movie.title}
-            </Text> */}
-          </SwiperSlide>
+            onClick={() => handleClick(movie)}
+          />
+        ))}
+        {series?.map((seriesItem, idx) => (
+          <SwiperSlide
+            key={`series-${seriesItem.id}-${idx}`}
+            className={style.swiperSlide}
+            style={{
+              backgroundImage: `url(${baseUrl}${seriesItem?.poster_path})`,
+              backgroundSize: "cover",
+              height: "44vh",
+              width: "13vw",
+            }}
+            onClick={() => handleClick(seriesItem)}
+          />
         ))}
       </Swiper>
     </Box>

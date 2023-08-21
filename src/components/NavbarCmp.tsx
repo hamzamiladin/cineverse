@@ -12,36 +12,28 @@ import {
   MenuItem,
   MenuDivider,
   useDisclosure,
-  useColorModeValue,
   Stack,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { AiOutlineUser } from "react-icons/ai";
+import Link from "next/link";
 // import "./styles/index.css";
 
 interface Props {
-  children: React.ReactNode;
+  name: string;
+  url: string;
 }
 
-const links = ["Home", "TV Series", "Movies", "My List", ];
+// const links = ["Home", "TV Shows", , "My List", ];
+const links: Array<Props> = [
+  { name: "Home", url: "/browse" },
+  { name: "TV Shows", url: "/browse/tv-series" },
+  { name: "Movies", url: "/browse/movies" },
+  { name: "My List", url: "/browse/my-list" },
+];
 
 const NavLink = (props: Props) => {
-  const { children } = props;
-  return (
-    <Box
-      as="a"
-      px={2}
-      py={1}
-      rounded={"md"}
-      _hover={{
-        textDecoration: "none",
-        bg: useColorModeValue("gray.200", "gray.700"),
-      }}
-      href={"#"}
-    >
-      {children}
-    </Box>
-  );
+  return <Link href={props.url}>{props.name}</Link>;
 };
 
 export default function NavbarCmp() {
@@ -64,7 +56,7 @@ export default function NavbarCmp() {
               <Image
                 src="/images/cineverse-logo.png"
                 alt="logo"
-                width={{ base: "60%", md: "35%" }}
+                boxSize={{ base: "60%", md: "35%" }}
               />
             </Box>
             <HStack
@@ -73,7 +65,7 @@ export default function NavbarCmp() {
               display={{ base: "none", md: "flex" }}
             >
               {links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
+                <NavLink key={link.url} {...link} />
               ))}
             </HStack>
           </HStack>
@@ -106,7 +98,7 @@ export default function NavbarCmp() {
           <Box pb={4} display={{ md: "none" }}>
             <Stack as={"nav"} spacing={4}>
               {links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
+                <NavLink key={link.url} {...link} />
               ))}
             </Stack>
           </Box>
@@ -132,7 +124,7 @@ export const LoginNav = () => {
         bg={"#000"}
       >
         <Box>
-          <Image src="/images/cineverse-logo.png" alt="logo" width={"35%"} />
+          <Image src="/images/cineverse-logo.png" alt="logo" boxSize={"35%"} />
         </Box>
         <Box>
           <Button colorScheme="orange" variant="outline" size={"sm"}>

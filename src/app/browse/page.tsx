@@ -86,14 +86,14 @@ const Home: React.FC<Props> = () => {
           <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
             Kids Series
           </Text>
-          <MovieRow movies={kidsSeries || []} />
+          <MovieRow series={kidsSeries || []} />
         </Box>
         {/* reality series */}
         <Box mt={14}>
           <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
             Reality Series
           </Text>
-          <MovieRow movies={realitySeries || []} />
+          <MovieRow series={realitySeries || []} />
         </Box>
         {/* romance movies */}
         <Box mt={14}>
