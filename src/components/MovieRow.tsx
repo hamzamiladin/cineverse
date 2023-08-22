@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { baseUrl } from "@/constants/movie";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 interface Props {
   movies?: Movie[];
@@ -17,15 +17,23 @@ interface Props {
 
 const MovieRow = ({ movies, series }: Props) => {
   const router = useRouter();
+  const pathname = usePathname();
+
+  const movieType = pathname.includes("/movie");
+  const seriesType = pathname.includes("/tv");
 
   const handleClick = (item: Movie | SeriesDetails) => {
     if ("title" in item) {
       router.push(
-        `/browse/details/${encodeURIComponent(item.title)}/${item.id}`
+        `/browse/details/${movieType}/${encodeURIComponent(item.title)}/${
+          item.id
+        }`
       );
     } else if ("name" in item) {
       router.push(
-        `/browse/details/${encodeURIComponent(item.name)}/${item.id}`
+        `/browse/details/${seriesType}/${encodeURIComponent(item.name)}/${
+          item.id
+        }`
       );
     }
   };
