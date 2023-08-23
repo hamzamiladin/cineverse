@@ -21,10 +21,8 @@ const DetailsPage = ({ movieDetails, seriesDetails }: Props) => {
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
   const getMediaDetails = cache(async (id: string, type: string) => {
-    const mediaType = type === "movie" ? "movie" : "tv";
-
     const res = await fetch(
-      `${BASE_URL}/${mediaType}/${id}?api_key=${API_KEY}&append_to_response=videos`
+      `${BASE_URL}/${type}/${id}?api_key=${API_KEY}&append_to_response=videos`
     );
     const data = await res.json();
     return data;
@@ -40,17 +38,21 @@ const DetailsPage = ({ movieDetails, seriesDetails }: Props) => {
       setMediaResult(results);
     };
     fetchData();
-  });
+  }, [getMediaDetails, id, type]);
+  console.log(type)
+  console.log(id)
 
   return (
     <Container bg={"#212121"} maxW={""} centerContent color="#fff">
       <SearchCmp />
       <Box mt={7} w={"90%"}>
         {/* Pass the mediaResult to DetailsCmp */}
-        {/* <DetailsCmp
-          movieDetails={type === "movie" ? mediaResult : movieDetails}
-          seriesDetails={type === "tv" ? mediaResult : seriesDetails}
-        /> */}
+        {mediaResult && (
+          <DetailsCmp
+            movieDetails={type === "movie" ? mediaResult : movieDetails}
+            seriesDetails={type === "tv" ? mediaResult : seriesDetails}
+          />
+        )}
       </Box>
       <FooterCmp />
     </Container>

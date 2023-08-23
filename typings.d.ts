@@ -19,51 +19,51 @@ export interface Genre {
 
 //requires movie id
 export interface MovieDetails {
-  adult: boolean;
+  adult?: boolean;
   backdrop_path?: string;
-  belongs_to_collection: {
+  belongs_to_collection?: {
     id: number;
     name: string;
     poster_path: string;
     backdrop_path?: string;
   };
-  budget: number;
-  genres: Array<Genre>;
-  homepage: string;
-  id: number;
+  budget?: number;
+  genres?: Array<Genre>;
+  homepage?: string;
+  id?: number;
   imdb_id?: string;
-  original_language: string;
+  original_language?: string;
   original_title?: string;
   overview: string;
-  popularity: number;
-  poster_path: string;
-  release_date: string;
-  runtime: number;
-  title: string;
+  popularity?: number;
+  poster_path?: string;
+  release_date?: string;
+  runtime?: number;
+  title?: string;
 }
 
 //requires series id
 export interface SeriesDetails {
-  adult: boolean;
+  adult?: boolean;
   backdrop_path?: string;
-  created_by: Array<{
+  created_by?: Array<{
     name: string;
   }>;
   episode_run_time?: number;
-  first_air_date: string;
-  genres: Array<Genre>;
-  homepage: string;
-  id: number;
+  first_air_date?: string;
+  genres?: Array<Genre>;
+  homepage?: string;
+  id?: number;
   languages?: [];
-  last_air_date: string;
-  name: string;
-  number_of_episodes: number;
-  number_of_seasons: number;
-  origin_country: [];
+  last_air_date?: string;
+  name?: string;
+  number_of_episodes?: number;
+  number_of_seasons?: number;
+  origin_country?: [];
   original_name?: string;
   overview: string;
-  popularity: number;
-  poster_path: string;
+  popularity?: number;
+  poster_path?: string;
 }
 
 export interface MovieCast {

@@ -19,8 +19,8 @@ const MovieRow = ({ movies, series }: Props) => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const movieType = pathname.includes("/movie");
-  const seriesType = pathname.includes("/tv");
+  const movieType = "movie";
+  const seriesType = "tv";
 
   const handleClick = (item: Movie | SeriesDetails) => {
     if ("title" in item) {
@@ -29,7 +29,7 @@ const MovieRow = ({ movies, series }: Props) => {
           item.id
         }`
       );
-    } else if ("name" in item) {
+    } else if ("name" in item && item.name) {
       router.push(
         `/browse/details/${seriesType}/${encodeURIComponent(item.name)}/${
           item.id
