@@ -1,4 +1,4 @@
-import { Box, Text, Flex } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { Movie, SeriesDetails } from "../../typings";
 import { Pagination, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -17,7 +17,6 @@ interface Props {
 
 const MovieRow = ({ movies, series }: Props) => {
   const router = useRouter();
-  const pathname = usePathname();
 
   const movieType = "movie";
   const seriesType = "tv";

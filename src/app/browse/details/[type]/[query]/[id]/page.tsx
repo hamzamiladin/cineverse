@@ -1,11 +1,9 @@
 "use client";
 import SearchCmp from "@/components/SearchCmp";
-import { Box, Container, Text } from "@chakra-ui/react";
+import { Box, Container } from "@chakra-ui/react";
 import { cache } from "react";
 import { MovieDetails, SeriesDetails } from "../../../../../../../typings";
-import Image from "next/image";
 import { useState, useEffect } from "react";
-import { baseUrl } from "@/constants/movie";
 import FooterCmp from "@/components/FooterCmp";
 import { useParams } from "next/navigation";
 import DetailsCmp from "@/components/DetailsCmp";
@@ -39,8 +37,8 @@ const DetailsPage = ({ movieDetails, seriesDetails }: Props) => {
     };
     fetchData();
   }, [getMediaDetails, id, type]);
-  console.log(type)
-  console.log(id)
+  console.log(type);
+  console.log(id);
 
   return (
     <Container bg={"#212121"} maxW={""} centerContent color="#fff">
