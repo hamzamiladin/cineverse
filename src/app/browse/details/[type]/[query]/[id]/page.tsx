@@ -37,13 +37,11 @@ const DetailsPage = ({ movieDetails, seriesDetails }: Props) => {
     };
     fetchData();
   }, [getMediaDetails, id, type]);
-  console.log(type);
-  console.log(id);
 
   return (
     <Container bg={"#212121"} maxW={""} centerContent color="#fff">
       <SearchCmp />
-      <Box mt={7} w={"90%"}>
+      <Box mt={7}>
         {/* Pass the mediaResult to DetailsCmp */}
         {mediaResult && (
           <DetailsCmp
