@@ -41,7 +41,7 @@ const DetailsPage = ({ movieDetails, seriesDetails }: Props) => {
   return (
     <Container bg={"#212121"} maxW={""} centerContent color="#fff">
       <SearchCmp />
-      <Box mt={7}>
+      <Box mt={7} w={"85%"}>
         {/* Pass the mediaResult to DetailsCmp */}
         {mediaResult && (
           <DetailsCmp

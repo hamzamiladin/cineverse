@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Grid, GridItem, Text } from "@chakra-ui/react";
 import { SeriesDetails, MovieDetails } from "../../typings";
 import { ReactNode } from "react";
 import Image from "next/image";
@@ -13,81 +13,84 @@ interface Props {
 const DetailsCmp = ({ movieDetails, seriesDetails, children }: Props) => {
   if (movieDetails) {
     return (
-      <Box position="relative">
+      <Box>
         <Text
           textTransform="uppercase"
-          fontSize={{ base: "3xl", md: "4xl" }}
+          fontSize={{ base: "xl", md: "3xl" }}
           whiteSpace="nowrap"
-          m={0}
+          my={2}
         >
           {movieDetails?.title}
         </Text>
-        <Box
+        <Grid
           backgroundImage={`linear-gradient(to right, rgba(0, 0, 0, 0.5) calc((50vw - 170px) - 340px), rgba(0, 0, 0, 0.84) 50%, rgba(0, 0, 0, 0.84) 100%), url(${baseUrl}${movieDetails?.backdrop_path})`}
           backgroundSize="cover"
-          height="70vh"
-          width="90vw"
-          position="relative"
+          bgRepeat={"no-repeat"}
+          width={"100%"}
+          h={"50vh"}
+          p={8}
+          templateColumns="repeat(4, 1fr)"
         >
-          <Flex
-            position="absolute"
-            top="50%"
-            left="50%"
-            transform="translate(-50%, -50%)"
-            color="white"
-            textAlign="center"
-          >
-            <Box
-              bgImage={`url(${baseUrl}${movieDetails?.poster_path})`}
-              backgroundSize="cover" w={"100%"}
-            ></Box>
-            <Box>
-              <Text fontSize={{ base: "2xl", md: "xl" }} pt={4}>
-                Overview
-              </Text>
-              <Text fontSize={{ base: "", md: "lg" }}>
-                {movieDetails?.overview}
-              </Text>
-            </Box>
-          </Flex>
-        </Box>
+          <GridItem>
+            <Image
+              src={`${baseUrl}${movieDetails?.poster_path}`}
+              alt="poster"
+              width={200}
+              height={200}
+            />
+          </GridItem>
+
+          <GridItem colSpan={3}>
+            <Text fontSize={{ base: "2xl", md: "xl" }} pt={4}>
+              Overview
+            </Text>
+            <Text fontSize={{ base: "", md: "lg" }}>
+              {movieDetails?.overview}
+            </Text>
+          </GridItem>
+        </Grid>
       </Box>
     );
   }
 
   if (seriesDetails) {
     return (
-      <Box position="relative">
+      <Box>
         <Text
           textTransform="uppercase"
-          fontSize={{ base: "3xl", md: "4xl" }}
+          fontSize={{ base: "xl", md: "3xl" }}
           whiteSpace="nowrap"
-          m={0}
+          my={2}
         >
           {seriesDetails?.name}
         </Text>
-        <Box
+        <Grid
           backgroundImage={`linear-gradient(to right, rgba(0, 0, 0, 0.5) calc((50vw - 170px) - 340px), rgba(0, 0, 0, 0.84) 50%, rgba(0, 0, 0, 0.84) 100%), url(${baseUrl}${seriesDetails?.backdrop_path})`}
           backgroundSize="cover"
-          width="90vw"
-          position="absolute"
+          bgRepeat={"no-repeat"}
+          width={"100%"}
+          h={"50vh"}
+          p={8}
+          templateColumns="repeat(4, 1fr)"
         >
-          <Box
-            position="absolute"
-            top="50%"
-            left="50%"
-            transform="translate(-50%, -50%)"
-            color="white"
-            textAlign="center"
-          >
+          <GridItem>
+            <Image
+              src={`${baseUrl}${seriesDetails?.poster_path}`}
+              alt="poster"
+              width={200}
+              height={200}
+            />
+          </GridItem>
+          <GridItem colSpan={3}>
+            
             <Text fontSize={{ base: "2xl", md: "xl" }} pt={4}>
               Overview
             </Text>
             <Text fontSize={{ base: "", md: "lg" }}>
               {seriesDetails?.overview}
             </Text>
-          </Box>
-        </Box>
+          </GridItem>
+        </Grid>
       </Box>
     );
   }
