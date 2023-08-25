@@ -28,7 +28,7 @@ export interface MovieDetails {
     backdrop_path?: string;
   };
   budget?: number;
-  genres?: Array<Genre>;
+  genres?: Genre[];
   homepage?: string;
   id?: number;
   imdb_id?: string;
@@ -40,6 +40,7 @@ export interface MovieDetails {
   release_date?: string;
   runtime?: number;
   title?: string;
+  tagline?: string;
 }
 
 //requires series id
@@ -76,8 +77,8 @@ export interface MovieCast {
 }
 
 export interface Video {
-  name: string
-  key: string
-  site: string
-  type: string
+  name: string;
+  key: string;
+  site: string;
+  type: string;
 }

@@ -1,4 +1,11 @@
-import { Box, Flex, Grid, GridItem, Text } from "@chakra-ui/react";
+import {
+  Box,
+  UnorderedList,
+  ListItem,
+  Grid,
+  GridItem,
+  Text,
+} from "@chakra-ui/react";
 import { SeriesDetails, MovieDetails } from "../../typings";
 import { ReactNode } from "react";
 import Image from "next/image";
@@ -39,8 +46,19 @@ const DetailsCmp = ({ movieDetails, seriesDetails, children }: Props) => {
               height={200}
             />
           </GridItem>
-
           <GridItem colSpan={3}>
+            <Text fontStyle="italic">{movieDetails?.tagline}</Text>
+            <UnorderedList
+              display={"flex"}
+              flexDir="row"
+              listStyleType="none"
+              gap={5}
+            >
+              {movieDetails?.genres?.map((genre) => (
+                <ListItem key={genre.id}>{genre.name}</ListItem>
+              ))}
+            </UnorderedList>
+
             <Text fontSize={{ base: "2xl", md: "xl" }} pt={4}>
               Overview
             </Text>
@@ -82,7 +100,6 @@ const DetailsCmp = ({ movieDetails, seriesDetails, children }: Props) => {
             />
           </GridItem>
           <GridItem colSpan={3}>
-            
             <Text fontSize={{ base: "2xl", md: "xl" }} pt={4}>
               Overview
             </Text>
