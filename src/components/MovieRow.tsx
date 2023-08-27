@@ -1,4 +1,4 @@
-import { Box, Text, Flex } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { Movie, SeriesDetails } from "../../typings";
 import { Pagination, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { baseUrl } from "@/constants/movie";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 interface Props {
   movies?: Movie[];
@@ -18,14 +18,21 @@ interface Props {
 const MovieRow = ({ movies, series }: Props) => {
   const router = useRouter();
 
+  const movieType = "movie";
+  const seriesType = "tv";
+
   const handleClick = (item: Movie | SeriesDetails) => {
     if ("title" in item) {
       router.push(
-        `/browse/details/${encodeURIComponent(item.title)}/${item.id}`
+        `/browse/details/${movieType}/${encodeURIComponent(item.title)}/${
+          item.id
+        }`
       );
-    } else if ("name" in item) {
+    } else if ("name" in item && item.name) {
       router.push(
-        `/browse/details/${encodeURIComponent(item.name)}/${item.id}`
+        `/browse/details/${seriesType}/${encodeURIComponent(item.name)}/${
+          item.id
+        }`
       );
     }
   };
