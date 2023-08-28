@@ -70,10 +70,14 @@ export interface SeriesDetails {
 export interface MovieCast {
   id?: number;
   name: string;
-  cast_id: number
+  cast_id: number;
   profile_path: string;
   character?: string;
   order: number;
+  roles?: Array<{
+    character: string;
+    episode_count: number;
+  }>;
 }
 
 export interface Video {

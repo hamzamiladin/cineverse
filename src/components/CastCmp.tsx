@@ -27,12 +27,13 @@ const CastCmp = ({ castResult }: Props) => {
         mt={7}
         justifyContent={"space-between"}
         alignItems="center"
+        w={"full"}
       >
-        {slicedCast &&
-          castResult?.map((cast, idx) => (
+        {castResult &&
+          slicedCast.map((cast, idx) => (
             <Box
               key={idx}
-              maxW={"28%"}
+              maxW={"35%"}
               borderWidth="1px"
               rounded="lg"
               shadow="lg"
@@ -64,9 +65,15 @@ const CastCmp = ({ castResult }: Props) => {
                   NO IMAGE
                 </Box>
               )}
-              <Box p={2} w={200}>
-                <Text>{cast.name}</Text>
+              <Box p={2} w={200} h={115}>
+                <Text fontWeight={"bold"}>{cast.name}</Text>
                 <Text>{cast.character}</Text>
+                {cast.roles && cast.roles.length > 0 && (
+                  <Box>
+                    <Text>{cast.roles[0].character}</Text>
+                    <Text>{`${cast.roles[0].episode_count} Episodes`}</Text>
+                  </Box>
+                )}
               </Box>
             </Box>
           ))}
