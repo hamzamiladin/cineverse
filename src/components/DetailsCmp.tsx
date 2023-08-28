@@ -7,17 +7,16 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { SeriesDetails, MovieDetails } from "../../typings";
-import { ReactNode } from "react";
 import Image from "next/image";
 import { baseUrl } from "@/constants/movie";
 
 interface Props {
   movieDetails: MovieDetails;
   seriesDetails: SeriesDetails;
-  children?: ReactNode;
+  children?: any;
 }
 
-const DetailsCmp = ({ movieDetails, seriesDetails, children }: Props) => {
+const DetailsCmp = ({ movieDetails, seriesDetails }: Props) => {
   if (movieDetails) {
     return (
       <Box>
@@ -121,8 +120,6 @@ const DetailsCmp = ({ movieDetails, seriesDetails, children }: Props) => {
       </Box>
     );
   }
-
-  return <>{children}</>;
 };
 
 export default DetailsCmp;
