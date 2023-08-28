@@ -15,7 +15,9 @@ const CastCmp = ({ castResult }: Props) => {
   const { id, type, query } = params;
 
   const handleClick = () => {
-    router.push(`/details/${type}/${query}/${id}/cast`);
+    router.push(
+      `/browse/details/${type}/${encodeURIComponent(query)}/${id}/cast`
+    );
   };
 
   return (
@@ -54,13 +56,14 @@ const CastCmp = ({ castResult }: Props) => {
               ) : (
                 <Box
                   width={200}
-                  height={200}
+                  height={300}
                   bg="gray.200"
                   style={{
                     borderTopLeftRadius: "5.2px",
                     borderTopRightRadius: "5.2px",
                   }}
                   bgColor={"gray.900"}
+                  textAlign={"center"}
                 >
                   NO IMAGE
                 </Box>
