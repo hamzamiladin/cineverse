@@ -100,6 +100,16 @@ const DetailsCmp = ({ movieDetails, seriesDetails, children }: Props) => {
             />
           </GridItem>
           <GridItem colSpan={3}>
+            <UnorderedList
+              display={"flex"}
+              flexDir="row"
+              listStyleType="none"
+              gap={5}
+            >
+              {seriesDetails?.genres?.map((genre) => (
+                <ListItem key={genre.id}>{genre.name}</ListItem>
+              ))}
+            </UnorderedList>
             <Text fontSize={{ base: "2xl", md: "xl" }} pt={4}>
               Overview
             </Text>

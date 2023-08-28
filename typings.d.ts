@@ -68,9 +68,9 @@ export interface SeriesDetails {
 }
 
 export interface MovieCast {
-  adult?: boolean;
   id?: number;
   name: string;
+  cast_id: number
   profile_path: string;
   character?: string;
   order: number;
