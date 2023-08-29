@@ -86,6 +86,10 @@ export interface MovieCrew {
   name: string
   job: string
   department: string
+  jobs?: Array<{
+    job: string
+  }>
+  profile_path: string;
 }
 
 export interface Video {

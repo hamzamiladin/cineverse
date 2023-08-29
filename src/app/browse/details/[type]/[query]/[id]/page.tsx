@@ -1,14 +1,13 @@
 "use client";
 import SearchCmp from "@/components/SearchCmp";
 import { Box, Container } from "@chakra-ui/react";
-import { cache } from "react";
+import { cache, useState, useEffect } from "react";
 import {
   MovieCast,
   MovieCrew,
   MovieDetails,
   SeriesDetails,
 } from "../../../../../../../typings";
-import { useState, useEffect } from "react";
 import FooterCmp from "@/components/FooterCmp";
 import { useParams } from "next/navigation";
 import DetailsCmp from "@/components/DetailsCmp";
@@ -29,6 +28,8 @@ const DetailsPage = ({ movieDetails, seriesDetails, castResult }: Props) => {
   if (type === "tv") {
     addEndpoint = "/aggregate_credits";
   }
+
+  /* for me --> use swr package for fetching */
 
   const getMediaDetails = cache(async (id: string, type: string) => {
     const res = await fetch(

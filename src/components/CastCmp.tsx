@@ -57,7 +57,6 @@ const CastCmp = ({ castResult }: Props) => {
                 <Box
                   width={200}
                   height={300}
-                  bg="gray.200"
                   style={{
                     borderTopLeftRadius: "5.2px",
                     borderTopRightRadius: "5.2px",
