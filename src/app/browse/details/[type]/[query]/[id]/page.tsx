@@ -4,6 +4,7 @@ import { Box, Container } from "@chakra-ui/react";
 import { cache } from "react";
 import {
   MovieCast,
+  MovieCrew,
   MovieDetails,
   SeriesDetails,
 } from "../../../../../../../typings";
@@ -53,6 +54,8 @@ const DetailsPage = ({ movieDetails, seriesDetails, castResult }: Props) => {
 
   const [castDetails, setCastDetails] = useState<MovieCast[] | []>([]);
 
+  const [crewDetails, setCrewDetails] = useState<MovieCrew[] | []>([]);
+
   useEffect(() => {
     const fetchData = async () => {
       const results = await getMediaDetails(id, type);
@@ -60,6 +63,7 @@ const DetailsPage = ({ movieDetails, seriesDetails, castResult }: Props) => {
 
       const fetchCast = await getCast(id, type);
       setCastDetails(fetchCast.cast);
+      setCrewDetails(fetchCast.crew);
     };
     fetchData();
   }, [getCast, getMediaDetails, id, type]);
@@ -74,6 +78,7 @@ const DetailsPage = ({ movieDetails, seriesDetails, castResult }: Props) => {
             <DetailsCmp
               movieDetails={type === "movie" ? mediaResult : movieDetails}
               seriesDetails={type === "tv" ? mediaResult : seriesDetails}
+              productionCrew={crewDetails}
             />
             <CastCmp castResult={castDetails} />
           </Box>
