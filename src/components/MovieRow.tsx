@@ -38,7 +38,7 @@ const MovieRow = ({ movies, series }: Props) => {
   };
 
   return (
-    <Box w={{ base: "97vw", md: "80vw" }}>
+    <Box w={{ base: "97vw", md: "87vw" }}>
       <Swiper
         slidesPerView={2}
         spaceBetween={7}

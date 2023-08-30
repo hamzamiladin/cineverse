@@ -48,7 +48,7 @@ export interface SeriesDetails {
   adult?: boolean;
   backdrop_path?: string;
   created_by?: Array<{
-    id: number
+    id: number;
     name: string;
   }>;
   episode_run_time?: number;
@@ -82,13 +82,13 @@ export interface MovieCast {
 }
 
 export interface MovieCrew {
-  id?: number
-  name: string
-  job: string
-  department: string
+  id?: number;
+  name: string;
+  job: string;
+  department: string;
   jobs?: Array<{
-    job: string
-  }>
+    job: string;
+  }>;
   profile_path: string;
 }
 
@@ -97,4 +97,5 @@ export interface Video {
   key: string;
   site: string;
   type: string;
+  id: string;
 }

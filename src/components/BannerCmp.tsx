@@ -17,7 +17,7 @@ interface Props {
 const Banner = ({ cineverseOriginals }: Props) => {
   const slicedMovies = cineverseOriginals.slice(0, 10);
   return (
-    <Box mt={12} maxW={{ base: "80%", md: "80%" }}>
+    <Box mt={12} w="90%">
       <Swiper
         pagination={{ type: "progressbar" }}
         navigation={false}
