@@ -2,6 +2,7 @@
 import { useRouter, useParams } from "next/navigation";
 import { Container, Box, Text } from "@chakra-ui/react";
 import { cache } from "react";
+import Link from "next/link";
 import { Movie, SeriesDetails } from "../../../../typings";
 import Image from "next/image";
 import { useState, useEffect } from "react";
@@ -15,7 +16,7 @@ interface Props {
 
 const SearchResultsPage = ({ movieResults }: Props) => {
   const router = useRouter();
-  const movie = useParams().movie;
+  const { movie } = useParams();
   const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -30,6 +31,18 @@ const SearchResultsPage = ({ movieResults }: Props) => {
   const [searchResults, setSearchResults] = useState<(Movie | SeriesDetails)[]>(
     []
   );
+
+  const handleRoute = (result: Movie | SeriesDetails) => {
+    let mediaType = "movie";
+
+    if ("title" in result) {
+      mediaType = "movie";
+    } else if ("name" in result) {
+      mediaType = "tv";
+    }
+
+    router.push(`/browse/details/${mediaType}/${movie}/${result.id}`);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -63,6 +76,7 @@ const SearchResultsPage = ({ movieResults }: Props) => {
             shadow="lg"
             position="relative"
             mb={4}
+            onClick={() => handleRoute(result)}
           >
             {result.poster_path ? (
               <Image
