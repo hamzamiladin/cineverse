@@ -29,7 +29,9 @@ const DetailsPage = ({ movieDetails, seriesDetails, castResult }: Props) => {
     addEndpoint = "/aggregate_credits";
   }
 
-  /* for me --> use swr package for fetching */
+  /* for me --> use swr package for fetching 
+   * use append_to_response for the cast instead of fetching separately
+  */
 
   const getMediaDetails = cache(async (id: string, type: string) => {
     const res = await fetch(

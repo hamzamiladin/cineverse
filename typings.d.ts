@@ -41,6 +41,9 @@ export interface MovieDetails {
   runtime?: number;
   title?: string;
   tagline?: string;
+  videos?: {
+    results: Array<Video>;
+  };
 }
 
 //requires series id
@@ -98,4 +101,5 @@ export interface Video {
   site: string;
   type: string;
   id: string;
+  size: number;
 }

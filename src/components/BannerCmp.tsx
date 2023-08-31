@@ -1,10 +1,12 @@
 import Image from "next/image";
-import { Movie } from "../../typings";
+import { Movie, Video } from "../../typings";
 import { Box, Flex, Text, Button } from "@chakra-ui/react";
 import { baseUrl } from "@/constants/movie";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import style from "./styles/swiper.module.css";
+import YoutubeCmp from "./YoutubeCmp";
+import { cache, useState } from "react";
 // swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -12,10 +14,21 @@ import "swiper/css/navigation";
 
 interface Props {
   cineverseOriginals: Movie[];
+  movieVideos: Video;
 }
 
-const Banner = ({ cineverseOriginals }: Props) => {
+const Banner = ({ cineverseOriginals, movieVideos }: Props) => {
   const slicedMovies = cineverseOriginals.slice(0, 10);
+  const [showVideo, setShowVideo] = useState<Video | null>(null);
+
+  const handleClick = (video: Video) => {
+    setShowVideo(video);
+  };
+
+  const handleClose = () => {
+    setShowVideo(null);
+  };
+
   return (
     <Box mt={12} w="90%">
       <Swiper
@@ -54,6 +67,7 @@ const Banner = ({ cineverseOriginals }: Props) => {
                 <Button>Play</Button>
                 <Button>More Info</Button>
               </Flex>
+              {showVideo && <YoutubeCmp key={showVideo.key} />}
             </Box>
           </SwiperSlide>
         ))}
