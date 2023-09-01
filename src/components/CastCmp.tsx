@@ -16,7 +16,9 @@ const CastCmp = ({ castResult }: Props) => {
 
   const handleClick = () => {
     router.push(
-      `/browse/details/${type}/${encodeURIComponent(query)}/${id}/cast`
+      `/browse/details/${type}/${encodeURIComponent(query)
+        .split(" ")
+        .join("-")}/${id}/cast`
     );
   };
 

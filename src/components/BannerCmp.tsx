@@ -1,12 +1,12 @@
-import Image from "next/image";
 import { Movie, Video } from "../../typings";
 import { Box, Flex, Text, Button } from "@chakra-ui/react";
 import { baseUrl } from "@/constants/movie";
-import { Pagination, Navigation, Autoplay } from "swiper/modules";
+import { Pagination, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import style from "./styles/swiper.module.css";
 import YoutubeCmp from "./YoutubeCmp";
 import { cache, useState, useEffect } from "react";
+import Link from "next/link";
 // swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -27,6 +27,10 @@ const Banner = ({ cineverseOriginals }: Props) => {
 
   const handleClose = () => {
     setShowVideo(null);
+  };
+
+  const handleTitle = (word: string) => {
+    return encodeURIComponent(word.split(" ").join("-"));
   };
 
   useEffect(() => {
@@ -56,7 +60,6 @@ const Banner = ({ cineverseOriginals }: Props) => {
       <Swiper
         pagination={{ type: "progressbar" }}
         navigation={true}
-        /* autoplay={{ delay: 2500, disableOnInteraction: true }} */
         modules={[Pagination, Navigation]}
         className="mySwiper"
       >
@@ -97,7 +100,13 @@ const Banner = ({ cineverseOriginals }: Props) => {
                 >
                   {showVideo ? "CANCEL" : "PLAY"}
                 </Button>
-                <Button>More Info</Button>
+                <Link
+                  href={`/browse/details/movie/${handleTitle(movie.title)}/${
+                    movie.id
+                  }`}
+                >
+                  <Button>More Info</Button>
+                </Link>
               </Flex>
               {showVideo && (
                 <YoutubeCmp key={showVideo.key} cineverseVideos={showVideo} />
