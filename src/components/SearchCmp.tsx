@@ -1,4 +1,4 @@
-import { Box, Text, Flex, Input, Button } from "@chakra-ui/react";
+import { Box, Flex, Input, Button } from "@chakra-ui/react";
 import "./styles/buttons.css";
 import { useRouter } from "next/navigation";
 import { useState } from "react";

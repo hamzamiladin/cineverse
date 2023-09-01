@@ -1,13 +1,16 @@
 "use client";
-import SearchCmp from "@/components/SearchCmp";
+
 import { Box, Container, Text, Flex, Avatar } from "@chakra-ui/react";
 import { useParams } from "next/navigation";
 import { MovieCast, MovieCrew } from "../../../../../../../../typings";
 import { cache, useState, useEffect } from "react";
-import FooterCmp from "@/components/FooterCmp";
 import { baseUrl } from "@/constants/movie";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import useSWR from "swr";
+
+const FooterCmp = dynamic(() => import("@/components/FooterCmp"));
+const SearchCmp = dynamic(() => import("@/components/SearchCmp"));
 
 interface Props {
   castResult: MovieCast[];

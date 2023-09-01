@@ -1,5 +1,4 @@
 "use client";
-import SearchCmp from "@/components/SearchCmp";
 import { Box, Container } from "@chakra-ui/react";
 import { cache, useState, useEffect } from "react";
 import {
@@ -8,10 +7,13 @@ import {
   MovieDetails,
   SeriesDetails,
 } from "../../../../../../../typings";
-import FooterCmp from "@/components/FooterCmp";
 import { useParams } from "next/navigation";
-import DetailsCmp from "@/components/DetailsCmp";
-import CastCmp from "@/components/CastCmp";
+import dynamic from "next/dynamic";
+
+const FooterCmp = dynamic(() => import("@/components/FooterCmp"));
+const SearchCmp = dynamic(() => import("@/components/SearchCmp"));
+const DetailsCmp = dynamic(() => import("@/components/DetailsCmp"));
+const CastCmp = dynamic(() => import("@/components/CastCmp"));
 
 interface Props {
   movieDetails: MovieDetails;
@@ -29,9 +31,9 @@ const DetailsPage = ({ movieDetails, seriesDetails, castResult }: Props) => {
     addEndpoint = "/aggregate_credits";
   }
 
-  /* for me --> use swr package for fetching 
+  /* for me --> use swr package for fetching
    * use append_to_response for the cast instead of fetching separately
-  */
+   */
 
   const getMediaDetails = cache(async (id: string, type: string) => {
     const res = await fetch(

@@ -7,8 +7,10 @@ import { Movie, SeriesDetails } from "../../../../typings";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { baseUrl } from "@/constants/movie";
-import SearchCmp from "@/components/SearchCmp";
-import FooterCmp from "@/components/FooterCmp";
+import dynamic from "next/dynamic";
+
+const FooterCmp = dynamic(() => import("@/components/FooterCmp"));
+const SearchCmp = dynamic(() => import("@/components/SearchCmp"));
 
 interface Props {
   movieResults: (Movie | SeriesDetails)[];
