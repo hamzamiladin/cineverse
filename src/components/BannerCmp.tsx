@@ -86,8 +86,16 @@ const Banner = ({ cineverseOriginals }: Props) => {
                 {movie.overview}
               </Text>
               <Flex gap={6}>
-                <Button onClick={() => handleClick(movieVideos[movie.id]?.[0])}>
-                  {!showVideo ? "PLAY" : "CANCEL"}
+                <Button
+                  onClick={() => {
+                    if (showVideo) {
+                      handleClose();
+                    } else {
+                      handleClick(movieVideos[movie.id]?.[0]);
+                    }
+                  }}
+                >
+                  {showVideo ? "CANCEL" : "PLAY"}
                 </Button>
                 <Button>More Info</Button>
               </Flex>
