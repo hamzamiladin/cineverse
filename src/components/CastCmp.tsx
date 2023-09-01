@@ -18,7 +18,8 @@ const CastCmp = ({ castResult }: Props) => {
     router.push(
       `/browse/details/${type}/${encodeURIComponent(query)
         .split(" ")
-        .join("-")}/${id}/cast`
+        .join("-")
+        .toLowerCase()}/${id}/cast`
     );
   };
 

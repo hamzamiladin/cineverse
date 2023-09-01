@@ -30,7 +30,7 @@ const Banner = ({ cineverseOriginals }: Props) => {
   };
 
   const handleTitle = (word: string) => {
-    return encodeURIComponent(word.split(" ").join("-"));
+    return encodeURIComponent(word.split(" ").join("-").toLowerCase());
   };
 
   useEffect(() => {

@@ -32,7 +32,8 @@ const MovieRow = ({ movies, series }: Props) => {
       router.push(
         `/browse/details/${seriesType}/${encodeURIComponent(item.name)
           .split(" ")
-          .join("-")}/${item.id}`
+          .join("-")
+          .toLowerCase()}/${item.id}`
       );
     }
   };
