@@ -1,11 +1,13 @@
 "use client";
 import { Container, Box, Text } from "@chakra-ui/react";
 import { Movie } from "../../../../typings";
-import SearchCmp from "@/components/SearchCmp";
 import useSWR from "swr";
 import * as fetchers from "../../../utils/fetchData";
-import MovieRow from "@/components/MovieRow";
-import FooterCmp from "@/components/FooterCmp";
+import dynamic from "next/dynamic";
+
+const MovieRow = dynamic(() => import("@/components/MovieRow"));
+const FooterCmp = dynamic(() => import("@/components/FooterCmp"));
+const SearchCmp = dynamic(() => import("@/components/SearchCmp"));
 
 interface Props {
   trendingMovies: Movie[];

@@ -24,21 +24,22 @@ const MovieRow = ({ movies, series }: Props) => {
   const handleClick = (item: Movie | SeriesDetails) => {
     if ("title" in item) {
       router.push(
-        `/browse/details/${movieType}/${encodeURIComponent(item.title)}/${
-          item.id
-        }`
+        `/browse/details/${movieType}/${encodeURIComponent(item.title)
+          .split(" ")
+          .join("-")}/${item.id}`
       );
     } else if ("name" in item && item.name) {
       router.push(
-        `/browse/details/${seriesType}/${encodeURIComponent(item.name)}/${
-          item.id
-        }`
+        `/browse/details/${seriesType}/${encodeURIComponent(item.name)
+          .split(" ")
+          .join("-")
+          .toLowerCase()}/${item.id}`
       );
     }
   };
 
   return (
-    <Box w={{ base: "97vw", md: "80vw" }}>
+    <Box w={{ base: "97vw", md: "87vw" }}>
       <Swiper
         slidesPerView={2}
         spaceBetween={7}

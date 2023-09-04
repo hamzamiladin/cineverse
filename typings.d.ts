@@ -41,6 +41,13 @@ export interface MovieDetails {
   runtime?: number;
   title?: string;
   tagline?: string;
+  videos?: {
+    results: Array<Video>;
+  };
+  casts?: {
+    cast: MovieCast;
+    crew: MovieCrew;
+  };
 }
 
 //requires series id
@@ -48,6 +55,7 @@ export interface SeriesDetails {
   adult?: boolean;
   backdrop_path?: string;
   created_by?: Array<{
+    id: number;
     name: string;
   }>;
   episode_run_time?: number;
@@ -65,15 +73,37 @@ export interface SeriesDetails {
   overview: string;
   popularity?: number;
   poster_path?: string;
+  videos?: {
+    results: Array<Video>;
+  };
+  aggregate_credits?: {
+    casts: Array<MovieCast>;
+    crew: Array<MovieCrew>;
+  };
 }
 
 export interface MovieCast {
-  adult?: boolean;
   id?: number;
   name: string;
+  cast_id: number;
   profile_path: string;
   character?: string;
   order: number;
+  roles?: Array<{
+    character: string;
+    episode_count: number;
+  }>;
+}
+
+export interface MovieCrew {
+  id?: number;
+  name: string;
+  job: string;
+  department: string;
+  jobs?: Array<{
+    job: string;
+  }>;
+  profile_path: string;
 }
 
 export interface Video {
@@ -81,4 +111,6 @@ export interface Video {
   key: string;
   site: string;
   type: string;
+  id: string;
+  size: number;
 }

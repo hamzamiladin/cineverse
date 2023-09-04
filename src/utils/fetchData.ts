@@ -1,122 +1,64 @@
 import { cache } from "react";
 import requests from "./requests";
 
-export const fetchCineverseOriginals = cache(async () => {
-  const res = await fetch(requests.getCineverseOriginals);
+const fetchData = async (url: string) => {
+  const res = await fetch(url);
   const data = await res.json();
   return data.results;
-});
+};
 
-export const fetchTrendingMovies = cache(async () => {
-  const res = await fetch(requests.getTrendingMovies);
-  const data = await res.json();
-  return data.results;
-});
+export const fetchCineverseOriginals = cache(() =>
+  fetchData(requests.getCineverseOriginals)
+);
 
-export const fetchTrendingSeries = cache(async () => {
-  const res = await fetch(requests.getTrendingSeries);
-  const data = await res.json();
-  return data.results;
-});
+export const fetchTrendingMovies = cache(() =>
+  fetchData(requests.getTrendingMovies)
+);
 
-export const fetchPopular = cache(async () => {
-  const res = await fetch(requests.getPopular);
-  const data = await res.json();
-  return data.results;
-});
+export const fetchTrendingSeries = cache(() =>
+  fetchData(requests.getTrendingSeries)
+);
 
-export const fetchUpcoming = cache(async () => {
-  const res = await fetch(requests.getUpcoming);
-  const data = await res.json();
-  return data.results;
-});
+export const fetchPopular = cache(() => fetchData(requests.getPopular));
 
-export const fetchTopRated = cache(async () => {
-  const res = await fetch(requests.getTopRated);
-  const data = await res.json();
-  return data.results;
-});
+export const fetchUpcoming = cache(() => fetchData(requests.getUpcoming));
 
-export const fetchAction = cache(async () => {
-  const res = await fetch(requests.getAction);
-  const data = await res.json();
-  return data.results;
-});
+export const fetchTopRated = cache(() => fetchData(requests.getTopRated));
 
-export const fetchComedy = cache(async () => {
-  const res = await fetch(requests.getComedy);
-  const data = await res.json();
-  return data.results;
-});
+export const fetchAction = cache(() => fetchData(requests.getAction));
 
-export const fetchRomance = cache(async () => {
-  const res = await fetch(requests.getRomance);
-  const data = await res.json();
-  return data.results;
-});
+export const fetchComedy = cache(() => fetchData(requests.getComedy));
 
-export const fetchDrama = cache(async () => {
-  const res = await fetch(requests.getDrama);
-  const data = await res.json();
-  return data.results;
-});
+export const fetchRomance = cache(() => fetchData(requests.getRomance));
 
-export const fetchAnimation = cache(async () => {
-  const res = await fetch(requests.getAnimation);
-  const data = await res.json();
-  return data.results;
-});
+export const fetchDrama = cache(() => fetchData(requests.getDrama));
 
-export const fetchAdventure = cache(async () => {
-  const res = await fetch(requests.getAdventure);
-  const data = await res.json();
-  return data.results;
-});
+export const fetchAnimation = cache(() => fetchData(requests.getAnimation));
 
-export const fetchHorror = cache(async () => {
-  const res = await fetch(requests.getHorror);
-  const data = await res.json();
-  return data.results;
-});
+export const fetchAdventure = cache(() => fetchData(requests.getAdventure));
 
-export const fetchPopularSeries = cache(async () => {
-  const res = await fetch(requests.getPopularSeries);
-  const data = await res.json();
-  return data.results;
-});
+export const fetchHorror = cache(() => fetchData(requests.getHorror));
 
-export const fetchDocSeries = cache(async () => {
-  const res = await fetch(requests.getDocSeries);
-  const data = await res.json();
-  return data.results;
-});
+export const fetchPopularSeries = cache(() =>
+  fetchData(requests.getPopularSeries)
+);
 
-export const fetchActionSeries = cache(async () => {
-  const res = await fetch(requests.getActionSeries);
-  const data = await res.json();
-  return data.results;
-});
+export const fetchDocSeries = cache(() => fetchData(requests.getDocSeries));
 
-export const fetchRealitySeries = cache(async () => {
-  const res = await fetch(requests.getRealitySeries);
-  const data = await res.json();
-  return data.results;
-});
+export const fetchActionSeries = cache(() =>
+  fetchData(requests.getActionSeries)
+);
 
-export const fetchKidSeries = cache(async () => {
-  const res = await fetch(requests.getKidSeries);
-  const data = await res.json();
-  return data.results;
-});
+export const fetchRealitySeries = cache(() =>
+  fetchData(requests.getRealitySeries)
+);
 
-export const fetchFamilySeries = cache(async () => {
-  const res = await fetch(requests.getFamilySeries);
-  const data = await res.json();
-  return data.results;
-});
+export const fetchKidSeries = cache(() => fetchData(requests.getKidSeries));
 
-export const fetchMysterySeries = cache(async () => {
-  const res = await fetch(requests.getMysterySeries);
-  const data = await res.json();
-  return data.results;
-});
+export const fetchFamilySeries = cache(() =>
+  fetchData(requests.getFamilySeries)
+);
+
+export const fetchMysterySeries = cache(() =>
+  fetchData(requests.getMysterySeries)
+);

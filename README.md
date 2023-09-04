@@ -5,15 +5,30 @@ Cineverse is a movie web app that provides users with different collections of m
 
 - users can login successfully into the app,
 - home page is displayed on successful login,
-- home page displays multiple rows containing different genres of movies,
-- users can search for any movie or tv series,
+- home page displays multiple rows containing different genres of movies and some series,
+- users can search for any movie or tv series in all pages,
 - users can create lists, add and remove movies,
-- users can add movies to favorite,
+- users can click on any movie/series tile and it should successfully route them to the details page of the movie or series,
+- details page should display the movie/series title, genres, tagline(if it exists on the api), pictures, overview, cast and crew,
+- clicking on view more in the cast section of details page routes the users to the cast page containing the cast and crew,
 - users can watch the movie trailers,
 - users can view the info of any movie or tv series,
 - users can sign out successfully. 
 
 ## Milestones
+### 1st milestone: Displaying Movies and Series on Home Page
+In this initial phase, my focus was on fetching and displaying movies and TV series data from The Movie Database API (TMDb). I worked on populating the home page with relevant content to engage users from the moment they login.
+
+### 2nd milestone: Search for Movies or Series using Keywords
+I refined the user experience by implementing a search feature. Users can now explore the vast collection of movies and TV series using keywords, making it effortless to find their favorites.
+
+### 3rd milestone: Display relevant details of any Movie or Series
+To enhance the engagement and knowledge of users, I concentrated on presenting comprehensive details about each movie and TV series. Users can now dive deep into information like title, genres, taglines (where available), images, overview, and more.
+
+### 4th milestone: Display the full cast and crew of any Movie or Series
+I created a seamless way for users to explore the individuals behind their favorite movies and series. Users can now get to know the talented cast and crew members in detail.
+
+### 5th milestone: Users can create and add Movies and Series to list
 
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).

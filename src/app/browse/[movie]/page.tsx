@@ -2,12 +2,15 @@
 import { useRouter, useParams } from "next/navigation";
 import { Container, Box, Text } from "@chakra-ui/react";
 import { cache } from "react";
+import Link from "next/link";
 import { Movie, SeriesDetails } from "../../../../typings";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { baseUrl } from "@/constants/movie";
-import SearchCmp from "@/components/SearchCmp";
-import FooterCmp from "@/components/FooterCmp";
+import dynamic from "next/dynamic";
+
+const FooterCmp = dynamic(() => import("@/components/FooterCmp"));
+const SearchCmp = dynamic(() => import("@/components/SearchCmp"));
 
 interface Props {
   movieResults: (Movie | SeriesDetails)[];
@@ -15,7 +18,7 @@ interface Props {
 
 const SearchResultsPage = ({ movieResults }: Props) => {
   const router = useRouter();
-  const movie = useParams().movie;
+  const { movie } = useParams();
   const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -31,13 +34,25 @@ const SearchResultsPage = ({ movieResults }: Props) => {
     []
   );
 
+  const handleRoute = (result: Movie | SeriesDetails) => {
+    let mediaType = "movie";
+
+    if ("title" in result) {
+      mediaType = "movie";
+    } else if ("name" in result) {
+      mediaType = "tv";
+    }
+
+    router.push(`/browse/details/${mediaType}/${movie}/${result.id}`);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       const results = await searchMovie(movie);
       setSearchResults(results);
     };
     fetchData();
-  });
+  }, [movie, searchMovie]);
 
   return (
     <Container bg={"#212121"} maxW={""} centerContent>
@@ -63,6 +78,7 @@ const SearchResultsPage = ({ movieResults }: Props) => {
             shadow="lg"
             position="relative"
             mb={4}
+            onClick={() => handleRoute(result)}
           >
             {result.poster_path ? (
               <Image

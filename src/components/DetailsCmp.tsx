@@ -6,19 +6,26 @@ import {
   GridItem,
   Text,
 } from "@chakra-ui/react";
-import { SeriesDetails, MovieDetails } from "../../typings";
-import { ReactNode } from "react";
+import { SeriesDetails, MovieDetails, MovieCrew } from "../../typings";
 import Image from "next/image";
 import { baseUrl } from "@/constants/movie";
 
 interface Props {
   movieDetails: MovieDetails;
   seriesDetails: SeriesDetails;
-  children?: ReactNode;
+  productionCrew: MovieCrew[];
 }
 
-const DetailsCmp = ({ movieDetails, seriesDetails, children }: Props) => {
+const DetailsCmp = ({ movieDetails, seriesDetails, productionCrew }: Props) => {
+  const sliceCrew = productionCrew.slice(0, 2);
+
   if (movieDetails) {
+    const date = movieDetails.release_date;
+    let year;
+    if (date) {
+      const releaseDate = new Date(date);
+      year = releaseDate.getFullYear();
+    }
     return (
       <Box>
         <Text
@@ -27,7 +34,7 @@ const DetailsCmp = ({ movieDetails, seriesDetails, children }: Props) => {
           whiteSpace="nowrap"
           my={2}
         >
-          {movieDetails?.title}
+          {`${movieDetails?.title} (${year})`}
         </Text>
         <Grid
           backgroundImage={`linear-gradient(to right, rgba(0, 0, 0, 0.5) calc((50vw - 170px) - 340px), rgba(0, 0, 0, 0.84) 50%, rgba(0, 0, 0, 0.84) 100%), url(${baseUrl}${movieDetails?.backdrop_path})`}
@@ -54,8 +61,8 @@ const DetailsCmp = ({ movieDetails, seriesDetails, children }: Props) => {
               listStyleType="none"
               gap={5}
             >
-              {movieDetails?.genres?.map((genre) => (
-                <ListItem key={genre.id}>{genre.name}</ListItem>
+              {movieDetails?.genres?.map((genre, idx) => (
+                <ListItem key={idx}>{genre.name}</ListItem>
               ))}
             </UnorderedList>
 
@@ -65,6 +72,18 @@ const DetailsCmp = ({ movieDetails, seriesDetails, children }: Props) => {
             <Text fontSize={{ base: "", md: "lg" }}>
               {movieDetails?.overview}
             </Text>
+
+            <UnorderedList display={"flex"} gap={8} listStyleType="none" pt={4}>
+              {productionCrew &&
+                sliceCrew.map((crew) => (
+                  <ListItem key={crew.id}>
+                    <Text fontSize={{ base: "", md: "lg" }} fontWeight="bold">
+                      {crew.name}
+                    </Text>
+                    <Text fontSize={{ base: "", md: "lg" }}>{crew.job}</Text>
+                  </ListItem>
+                ))}
+            </UnorderedList>
           </GridItem>
         </Grid>
       </Box>
@@ -72,6 +91,13 @@ const DetailsCmp = ({ movieDetails, seriesDetails, children }: Props) => {
   }
 
   if (seriesDetails) {
+    const seriesDate = seriesDetails.first_air_date;
+    let seriesYear;
+
+    if (seriesDate) {
+      const releaseDate = new Date(seriesDate);
+      seriesYear = releaseDate.getFullYear();
+    }
     return (
       <Box>
         <Text
@@ -80,7 +106,7 @@ const DetailsCmp = ({ movieDetails, seriesDetails, children }: Props) => {
           whiteSpace="nowrap"
           my={2}
         >
-          {seriesDetails?.name}
+          {`${seriesDetails?.name} (${seriesYear})`}
         </Text>
         <Grid
           backgroundImage={`linear-gradient(to right, rgba(0, 0, 0, 0.5) calc((50vw - 170px) - 340px), rgba(0, 0, 0, 0.84) 50%, rgba(0, 0, 0, 0.84) 100%), url(${baseUrl}${seriesDetails?.backdrop_path})`}
@@ -100,19 +126,61 @@ const DetailsCmp = ({ movieDetails, seriesDetails, children }: Props) => {
             />
           </GridItem>
           <GridItem colSpan={3}>
+            <UnorderedList
+              display={"flex"}
+              flexDir="row"
+              listStyleType="none"
+              gap={5}
+            >
+              {seriesDetails?.genres?.map((genre, idx) => (
+                <ListItem key={idx} fontSize={{ base: "", md: "md" }}>
+                  {genre.name}
+                </ListItem>
+              ))}
+            </UnorderedList>
             <Text fontSize={{ base: "2xl", md: "xl" }} pt={4}>
               Overview
             </Text>
             <Text fontSize={{ base: "", md: "lg" }}>
               {seriesDetails?.overview}
             </Text>
+            <UnorderedList display={"flex"} gap={8} listStyleType="none" pt={4}>
+              {seriesDetails.created_by && seriesDetails.created_by.length > 0
+                ? seriesDetails.created_by.map((crew, idx) => (
+                    <ListItem key={idx}>
+                      <Text
+                        fontSize={{ base: "", md: "lg" }}
+                        fontWeight={"bold"}
+                      >
+                        {crew.name}
+                      </Text>
+                      <Text fontSize={{ base: "", md: "lg" }}>Creator</Text>
+                    </ListItem>
+                  ))
+                : seriesDetails.aggregate_credits &&
+                  seriesDetails.aggregate_credits.crew
+                ? seriesDetails.aggregate_credits.crew.map((crew, idx) => (
+                    <ListItem key={idx}>
+                      <Text
+                        fontSize={{ base: "", md: "lg" }}
+                        fontWeight={"bold"}
+                      >
+                        {crew.name}
+                      </Text>
+                      <Text fontSize={{ base: "", md: "lg" }}>
+                        {crew.jobs && crew.jobs.length > 0
+                          ? crew.jobs[0].job
+                          : "Creator"}
+                      </Text>
+                    </ListItem>
+                  ))
+                : null}
+            </UnorderedList>
           </GridItem>
         </Grid>
       </Box>
     );
   }
-
-  return <>{children}</>;
 };
 
 export default DetailsCmp;
