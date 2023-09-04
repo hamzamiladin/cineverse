@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Container, Text, Flex, Avatar } from "@chakra-ui/react";
+import { Box, Container, Text, Flex, Avatar, Button } from "@chakra-ui/react";
 import { useParams } from "next/navigation";
 import { MovieCast, MovieCrew } from "../../../../../../../../typings";
 import { cache, useState, useEffect } from "react";
@@ -37,6 +37,8 @@ const CastPage = ({ castResult, crewResult }: Props) => {
 
   const [castDetails, setCastDetails] = useState<MovieCast[] | []>([]);
   const [crewDetails, setCrewDetails] = useState<MovieCrew[] | []>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const resultsPerPage = 15;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,13 +49,30 @@ const CastPage = ({ castResult, crewResult }: Props) => {
     fetchData();
   }, [getCast, id, type]);
 
+  const startIdx = (currentPage - 1) * resultsPerPage;
+  const endIdx = startIdx + resultsPerPage;
+  const slicedCast = castDetails.slice(startIdx, endIdx);
+  const slicedCrew = crewDetails.slice(startIdx, endIdx);
+
+  const previousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const nextPage = () => {
+    if (endIdx < castDetails.length) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
   return (
     <Container bg={"#212121"} maxW={""} centerContent color="#fff">
       <SearchCmp />
       <Box mt={7} w={"85%"}>
         <Flex justifyContent={"space-between"}>
           <Box>
-            {castDetails?.map((cast) => (
+            {slicedCast?.map((cast) => (
               <Flex key={cast.id} gap={3} py={2}>
                 {/* fix image here */}
                 {cast.profile_path ? (
@@ -96,7 +115,7 @@ const CastPage = ({ castResult, crewResult }: Props) => {
             ))}
           </Box>
           <Box>
-            {crewDetails?.map((crew) => (
+            {slicedCrew?.map((crew) => (
               <Flex key={crew.id} py={2}>
                 <Box>
                   <Flex gap={3}>
@@ -138,6 +157,24 @@ const CastPage = ({ castResult, crewResult }: Props) => {
               </Flex>
             ))}
           </Box>
+        </Flex>
+        <Flex mt={5} justifyContent="space-around" alignItems="center">
+          <Button
+            colorScheme="red"
+            variant="outline"
+            onClick={previousPage}
+            disabled={currentPage === 1}
+          >
+            PREVIOUS
+          </Button>
+          <Button
+            colorScheme="red"
+            variant="outline"
+            onClick={nextPage}
+            disabled={endIdx >= castDetails.length}
+          >
+            NEXT
+          </Button>
         </Flex>
       </Box>
       <FooterCmp />
