@@ -30,7 +30,7 @@ const DetailsPage = ({ movieDetails, seriesDetails, castResult }: Props) => {
 
   const getMediaDetails = cache(async (id: string, type: string) => {
     const res = await fetch(
-      `${BASE_URL}/${type}/${id}?api_key=${API_KEY}&append_to_response=videos,casts`
+      `${BASE_URL}/${type}/${id}?api_key=${API_KEY}&append_to_response=videos,casts,aggregate_credits`
     );
 
     const data = await res.json();
@@ -49,8 +49,14 @@ const DetailsPage = ({ movieDetails, seriesDetails, castResult }: Props) => {
     const fetchData = async () => {
       const results = await getMediaDetails(id, type);
       setMediaResult(results);
-      setCastDetails(results.casts.cast);
-      setCrewDetails(results.casts.crew);
+
+      if (results.casts) {
+        setCastDetails(results.casts.cast);
+        setCrewDetails(results.casts.crew);
+      } else {
+        setCastDetails(results.aggregate_credits.cast);
+        setCrewDetails(results.aggregate_credits.crew);
+      }
     };
     fetchData();
   }, [getMediaDetails, id, type]);

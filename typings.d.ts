@@ -44,6 +44,10 @@ export interface MovieDetails {
   videos?: {
     results: Array<Video>;
   };
+  casts?: {
+    cast: MovieCast;
+    crew: MovieCrew;
+  };
 }
 
 //requires series id
@@ -69,6 +73,13 @@ export interface SeriesDetails {
   overview: string;
   popularity?: number;
   poster_path?: string;
+  videos?: {
+    results: Array<Video>;
+  };
+  aggregate_credits?: {
+    casts: Array<MovieCast>;
+    crew: Array<MovieCrew>;
+  };
 }
 
 export interface MovieCast {

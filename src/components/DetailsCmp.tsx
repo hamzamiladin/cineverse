@@ -61,8 +61,8 @@ const DetailsCmp = ({ movieDetails, seriesDetails, productionCrew }: Props) => {
               listStyleType="none"
               gap={5}
             >
-              {movieDetails?.genres?.map((genre) => (
-                <ListItem key={genre.id}>{genre.name}</ListItem>
+              {movieDetails?.genres?.map((genre, idx) => (
+                <ListItem key={idx}>{genre.name}</ListItem>
               ))}
             </UnorderedList>
 
@@ -132,8 +132,8 @@ const DetailsCmp = ({ movieDetails, seriesDetails, productionCrew }: Props) => {
               listStyleType="none"
               gap={5}
             >
-              {seriesDetails?.genres?.map((genre) => (
-                <ListItem key={genre.id} fontSize={{ base: "", md: "md" }}>
+              {seriesDetails?.genres?.map((genre, idx) => (
+                <ListItem key={idx} fontSize={{ base: "", md: "md" }}>
                   {genre.name}
                 </ListItem>
               ))}
@@ -145,14 +145,36 @@ const DetailsCmp = ({ movieDetails, seriesDetails, productionCrew }: Props) => {
               {seriesDetails?.overview}
             </Text>
             <UnorderedList display={"flex"} gap={8} listStyleType="none" pt={4}>
-              {seriesDetails.created_by?.map((crew) => (
-                <ListItem key={crew.id}>
-                  <Text fontSize={{ base: "", md: "lg" }} fontWeight={"bold"}>
-                    {crew.name}
-                  </Text>
-                  <Text fontSize={{ base: "", md: "lg" }}>Creator</Text>
-                </ListItem>
-              ))}
+              {seriesDetails.created_by && seriesDetails.created_by.length > 0
+                ? seriesDetails.created_by.map((crew, idx) => (
+                    <ListItem key={idx}>
+                      <Text
+                        fontSize={{ base: "", md: "lg" }}
+                        fontWeight={"bold"}
+                      >
+                        {crew.name}
+                      </Text>
+                      <Text fontSize={{ base: "", md: "lg" }}>Creator</Text>
+                    </ListItem>
+                  ))
+                : seriesDetails.aggregate_credits &&
+                  seriesDetails.aggregate_credits.crew
+                ? seriesDetails.aggregate_credits.crew.map((crew, idx) => (
+                    <ListItem key={idx}>
+                      <Text
+                        fontSize={{ base: "", md: "lg" }}
+                        fontWeight={"bold"}
+                      >
+                        {crew.name}
+                      </Text>
+                      <Text fontSize={{ base: "", md: "lg" }}>
+                        {crew.jobs && crew.jobs.length > 0
+                          ? crew.jobs[0].job
+                          : "Creator"}
+                      </Text>
+                    </ListItem>
+                  ))
+                : null}
             </UnorderedList>
           </GridItem>
         </Grid>

@@ -53,7 +53,7 @@ const Banner = ({ cineverseOriginals }: Props) => {
       setMovieVideos(videos);
     };
     fetchMovieVideos();
-  });
+  }, [slicedMovies]);
 
   return (
     <Box mt={12} w="90%">

@@ -52,7 +52,7 @@ const SearchResultsPage = ({ movieResults }: Props) => {
       setSearchResults(results);
     };
     fetchData();
-  });
+  }, [movie, searchMovie]);
 
   return (
     <Container bg={"#212121"} maxW={""} centerContent>
