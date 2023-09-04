@@ -159,21 +159,23 @@ const DetailsCmp = ({ movieDetails, seriesDetails, productionCrew }: Props) => {
                   ))
                 : seriesDetails.aggregate_credits &&
                   seriesDetails.aggregate_credits.crew
-                ? seriesDetails.aggregate_credits.crew.map((crew, idx) => (
-                    <ListItem key={idx}>
-                      <Text
-                        fontSize={{ base: "", md: "lg" }}
-                        fontWeight={"bold"}
-                      >
-                        {crew.name}
-                      </Text>
-                      <Text fontSize={{ base: "", md: "lg" }}>
-                        {crew.jobs && crew.jobs.length > 0
-                          ? crew.jobs[0].job
-                          : "Creator"}
-                      </Text>
-                    </ListItem>
-                  ))
+                ? seriesDetails.aggregate_credits.crew
+                    .slice(0, 2)
+                    .map((crew, idx) => (
+                      <ListItem key={idx}>
+                        <Text
+                          fontSize={{ base: "", md: "lg" }}
+                          fontWeight={"bold"}
+                        >
+                          {crew.name}
+                        </Text>
+                        <Text fontSize={{ base: "", md: "lg" }}>
+                          {crew.jobs && crew.jobs.length > 0
+                            ? crew.jobs[0].job
+                            : "Creator"}
+                        </Text>
+                      </ListItem>
+                    ))
                 : null}
             </UnorderedList>
           </GridItem>
