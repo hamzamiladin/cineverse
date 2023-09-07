@@ -1,12 +1,22 @@
 "use client";
 
-import { Box, Container, Text, Flex, Avatar, Button } from "@chakra-ui/react";
+import {
+  Box,
+  Container,
+  Text,
+  Flex,
+  Avatar,
+  Button,
+  IconButton,
+} from "@chakra-ui/react";
 import { useParams } from "next/navigation";
 import { MovieCast, MovieCrew } from "../../../../../../../../typings";
 import { cache, useState, useEffect } from "react";
 import { baseUrl } from "@/constants/movie";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
+import { ChevronLeftIcon } from "@chakra-ui/icons";
 import useSWR from "swr";
 
 const FooterCmp = dynamic(() => import("@/components/FooterCmp"));
@@ -21,6 +31,12 @@ const CastPage = ({ castResult, crewResult }: Props) => {
   const { id, type } = useParams();
   const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+
+  const router = useRouter();
+
+  const prevPage = () => {
+    router.back();
+  };
 
   let addEndpoint = "/credits";
   if (type === "tv") {
@@ -69,25 +85,39 @@ const CastPage = ({ castResult, crewResult }: Props) => {
   return (
     <Container bg={"#212121"} maxW={""} centerContent color="#fff">
       <SearchCmp />
+      <IconButton
+        my={5}
+        isRound={true}
+        variant="outline"
+        colorScheme="red"
+        fontSize="md"
+        aria-label="Done"
+        onClick={prevPage}
+        icon={<ChevronLeftIcon />}
+      />
       <Box mt={7} w={{ base: "90%", md: "85%" }}>
-        <Flex justifyContent={"space-between"}>
+        <Flex
+          justifyContent={"space-between"}
+          flexDir={{ base: "column", md: "row" }}
+        >
           <Box>
+            <Text>Cast</Text>
             {slicedCast?.map((cast) => (
               <Flex key={cast.id} gap={3} py={2}>
                 {/* fix image here */}
                 {cast.profile_path ? (
-                  <Box maxW={{ base: "50%", md: "35%" }}>
+                  <Box>
                     <Image
                       src={`${baseUrl}${cast.profile_path}`}
                       alt="cast-picture"
-                      width={200}
-                      height={150}
+                      width={90}
+                      height={90}
                     />
                   </Box>
                 ) : (
                   <Flex
-                    w={140}
-                    h={200}
+                    w={90}
+                    h={130}
                     bg="gray.200"
                     style={{
                       borderTopLeftRadius: "5.2px",
@@ -115,27 +145,27 @@ const CastPage = ({ castResult, crewResult }: Props) => {
             ))}
           </Box>
           <Box>
+            <Text>Crew</Text>
             {slicedCrew?.map((crew) => (
               <Flex key={crew.id} py={2}>
                 <Box>
                   <Flex gap={3}>
                     {crew.profile_path ? (
-                      <Box maxW={"35%"}>
+                      <Box>
                         <Image
                           src={`${baseUrl}${crew.profile_path}`}
                           alt="crew-picture"
-                          width={200}
-                          height={200}
+                          width={90}
+                          height={90}
                         />
                       </Box>
                     ) : (
                       <Flex
-                        w={130}
-                        h={190}
+                        w={90}
+                        h={130}
                         bg="gray.200"
                         style={{
-                          borderTopLeftRadius: "5.2px",
-                          borderTopRightRadius: "5.2px",
+                          borderRadius: "5.2px",
                         }}
                         py={2}
                         alignItems="center"
