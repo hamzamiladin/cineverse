@@ -55,7 +55,7 @@ const SearchResultsPage = ({ movieResults }: Props) => {
   }, [movie, searchMovie]);
 
   return (
-    <Container bg={"#212121"} maxW={""} centerContent>
+    <Container bg={"#212121"} maxW={""} centerContent overflow={"hidden"}>
       <SearchCmp />
       <Box mt={4}>
         <Text color={"#fff"}>search results for: {movie}</Text>

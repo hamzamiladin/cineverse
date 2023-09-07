@@ -62,7 +62,13 @@ const DetailsPage = ({ movieDetails, seriesDetails, castResult }: Props) => {
   }, [getMediaDetails, id, type]);
 
   return (
-    <Container bg={"#212121"} maxW={""} centerContent color="#fff">
+    <Container
+      bg={"#212121"}
+      maxW={""}
+      centerContent
+      color="#fff"
+      overflow={"hidden"}
+    >
       <SearchCmp />
       <Box mt={7} w={"85%"}>
         {/* Pass the mediaResult to DetailsCmp */}

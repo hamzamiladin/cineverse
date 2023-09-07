@@ -41,7 +41,7 @@ const DetailsCmp = ({ movieDetails, seriesDetails, productionCrew }: Props) => {
           backgroundSize="cover"
           bgRepeat={"no-repeat"}
           width={"100%"}
-          h={"50vh"}
+          h={{base: "70vh", md:"50vh"}}
           p={8}
           templateColumns="repeat(4, 1fr)"
         >
@@ -58,6 +58,7 @@ const DetailsCmp = ({ movieDetails, seriesDetails, productionCrew }: Props) => {
             <UnorderedList
               display={"flex"}
               flexDir="row"
+              flexWrap="wrap"
               listStyleType="none"
               gap={5}
             >

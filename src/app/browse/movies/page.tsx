@@ -58,7 +58,7 @@ const MoviesPage: React.FC<Props> = () => {
   const { data: horrorMovies } = useSWR("horrorMovies", fetchers.fetchHorror);
 
   return (
-    <Container bg={"#212121"} maxW={""} centerContent>
+    <Container bg={"#212121"} maxW={""} centerContent overflow={"hidden"}>
       <SearchCmp />
       {/* main */}
       <Box mt={7}>
@@ -71,7 +71,7 @@ const MoviesPage: React.FC<Props> = () => {
         </Box>
 
         {/* popular movies */}
-        <Box mt={14}>
+        <Box pt={{ base: 2, md: 14 }}>
           <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
             Popular Movies
           </Text>
@@ -79,7 +79,7 @@ const MoviesPage: React.FC<Props> = () => {
         </Box>
 
         {/* upcoming movies */}
-        <Box mt={14}>
+        <Box pt={{ base: 2, md: 14 }}>
           <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
             Upcoming Movies
           </Text>
@@ -87,7 +87,7 @@ const MoviesPage: React.FC<Props> = () => {
         </Box>
 
         {/* top rated movies */}
-        <Box mt={14}>
+        <Box pt={14}>
           <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
             Top Rated Movies
           </Text>
@@ -95,7 +95,7 @@ const MoviesPage: React.FC<Props> = () => {
         </Box>
 
         {/* action movies */}
-        <Box mt={14}>
+        <Box pt={14}>
           <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
             Action Movies
           </Text>
@@ -103,7 +103,7 @@ const MoviesPage: React.FC<Props> = () => {
         </Box>
 
         {/* comedy movies */}
-        <Box mt={14}>
+        <Box pt={14}>
           <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
             Comedy Movies
           </Text>
@@ -111,7 +111,7 @@ const MoviesPage: React.FC<Props> = () => {
         </Box>
 
         {/* romance movies */}
-        <Box mt={14}>
+        <Box pt={14}>
           <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
             Romance Movies
           </Text>
@@ -119,7 +119,7 @@ const MoviesPage: React.FC<Props> = () => {
         </Box>
 
         {/* drama movies */}
-        <Box mt={14}>
+        <Box pt={14}>
           <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
             Drama
           </Text>
@@ -127,7 +127,7 @@ const MoviesPage: React.FC<Props> = () => {
         </Box>
 
         {/* animation movies */}
-        <Box mt={14}>
+        <Box pt={14}>
           <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
             Animation Movies
           </Text>
@@ -135,7 +135,7 @@ const MoviesPage: React.FC<Props> = () => {
         </Box>
 
         {/* adventure movies */}
-        <Box mt={14}>
+        <Box pt={14}>
           <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
             Adventure Movies
           </Text>
@@ -143,7 +143,7 @@ const MoviesPage: React.FC<Props> = () => {
         </Box>
 
         {/* horror movies */}
-        <Box mt={14}>
+        <Box pt={14}>
           <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>
             Horror Movies
           </Text>

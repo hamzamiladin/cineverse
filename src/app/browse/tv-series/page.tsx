@@ -49,7 +49,7 @@ const SeriesPage: React.FC<Props> = () => {
   );
 
   return (
-    <Container bg={"#212121"} maxW={""} centerContent>
+    <Container bg={"#212121"} maxW={""} centerContent overflow={"hidden"}>
       <SearchCmp />
       {/* main */}
       <Box mt={7}>

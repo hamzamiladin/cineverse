@@ -48,7 +48,7 @@ const Home: React.FC<Props> = () => {
   );
 
   return (
-    <Container bg={"#212121"} maxW={""} centerContent>
+    <Container bg={"#212121"} maxW={""} centerContent overflow={"hidden"}>
       <SearchCmp />
 
       <Banner cineverseOriginals={cineverseOriginals || []} />

@@ -69,14 +69,14 @@ const CastPage = ({ castResult, crewResult }: Props) => {
   return (
     <Container bg={"#212121"} maxW={""} centerContent color="#fff">
       <SearchCmp />
-      <Box mt={7} w={"85%"}>
+      <Box mt={7} w={{ base: "90%", md: "85%" }}>
         <Flex justifyContent={"space-between"}>
           <Box>
             {slicedCast?.map((cast) => (
               <Flex key={cast.id} gap={3} py={2}>
                 {/* fix image here */}
                 {cast.profile_path ? (
-                  <Box maxW={"35%"}>
+                  <Box maxW={{ base: "50%", md: "35%" }}>
                     <Image
                       src={`${baseUrl}${cast.profile_path}`}
                       alt="cast-picture"
