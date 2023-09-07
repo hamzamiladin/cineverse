@@ -70,7 +70,7 @@ const DetailsPage = ({ movieDetails, seriesDetails, castResult }: Props) => {
       overflow={"hidden"}
     >
       <SearchCmp />
-      <Box mt={7} w={"85%"}>
+      <Box mt={7} w={{ base: "93%", md: "85%" }}>
         {/* Pass the mediaResult to DetailsCmp */}
         {mediaResult && castDetails && (
           <Box>

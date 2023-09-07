@@ -30,8 +30,7 @@ const DetailsCmp = ({ movieDetails, seriesDetails, productionCrew }: Props) => {
       <Box>
         <Text
           textTransform="uppercase"
-          fontSize={{ base: "xl", md: "3xl" }}
-          whiteSpace="nowrap"
+          fontSize={{ base: "md", md: "3xl" }}
           my={2}
         >
           {`${movieDetails?.title} (${year})`}
@@ -41,11 +40,11 @@ const DetailsCmp = ({ movieDetails, seriesDetails, productionCrew }: Props) => {
           backgroundSize="cover"
           bgRepeat={"no-repeat"}
           width={"100%"}
-          h={{base: "70vh", md:"50vh"}}
+          h={{ base: "70vh", md: "50vh" }}
           p={8}
           templateColumns="repeat(4, 1fr)"
         >
-          <GridItem>
+          <GridItem display={{ base: "none", md: "grid" }}>
             <Image
               src={`${baseUrl}${movieDetails?.poster_path}`}
               alt="poster"
@@ -53,7 +52,7 @@ const DetailsCmp = ({ movieDetails, seriesDetails, productionCrew }: Props) => {
               height={200}
             />
           </GridItem>
-          <GridItem colSpan={3}>
+          <GridItem colSpan={{ base: 4, md: 3 }}>
             <Text fontStyle="italic">{movieDetails?.tagline}</Text>
             <UnorderedList
               display={"flex"}
