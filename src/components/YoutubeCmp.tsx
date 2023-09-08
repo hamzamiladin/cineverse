@@ -17,7 +17,15 @@ const YoutubeCmp = ({ cineverseVideos }: Props) => {
       autoplay: 1,
     },
   };
-  return <YouTube videoId={cineverseVideos?.key} opts={opts} onReady={onPlayerReady} />;
+  return (
+    <YouTube
+      videoId={cineverseVideos?.key}
+      title={cineverseVideos?.name}
+      opts={opts}
+      onReady={onPlayerReady}
+      
+    />
+  );
 };
 
 export default YoutubeCmp;

@@ -39,7 +39,7 @@ const DetailsPage = ({ movieDetails, seriesDetails, castResult }: Props) => {
   });
 
   const routeToWatch = () => {
-    router.push(`/browse/details/${query}/watch`);
+    router.push(`/browse/details/${type}/${query}/${id}/watch`);
   };
 
   const [mediaResult, setMediaResult] = useState<

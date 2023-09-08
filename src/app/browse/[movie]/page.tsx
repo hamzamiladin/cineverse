@@ -1,11 +1,10 @@
 "use client";
 import { useRouter, useParams } from "next/navigation";
 import { Container, Box, Text } from "@chakra-ui/react";
-import { cache } from "react";
 import Link from "next/link";
 import { Movie, SeriesDetails } from "../../../../typings";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, cache } from "react";
 import { baseUrl } from "@/constants/movie";
 import dynamic from "next/dynamic";
 

@@ -13,7 +13,6 @@ import { SeriesDetails, MovieDetails, MovieCrew } from "../../typings";
 import Image from "next/image";
 import { baseUrl } from "@/constants/movie";
 import "./styles/buttons.css";
-import { useRouter } from "next/navigation";
 
 interface Props {
   movieDetails: MovieDetails;
@@ -28,7 +27,6 @@ const DetailsCmp = ({
   productionCrew,
   playMovie,
 }: Props) => {
-  const router = useRouter();
   const sliceCrew = productionCrew.slice(0, 2);
 
   const movieRuntime = (time: number) => {
@@ -183,8 +181,12 @@ const DetailsCmp = ({
               ))}
             </UnorderedList>
             <Flex flexDir="column" mt={2}>
-              <Text>Seasons ({seriesDetails?.number_of_seasons})</Text>
-              <Text>All Episodes ({seriesDetails?.number_of_episodes})</Text>
+              <Text>
+                Seasons {`(${seriesDetails?.number_of_seasons || "N/A"})`}
+              </Text>
+              <Text>
+                All Episodes {`(${seriesDetails?.number_of_episodes || "N/A"})`}
+              </Text>
             </Flex>
 
             <Text fontSize={{ base: "lg", md: "xl" }} pt={4}>
