@@ -58,11 +58,13 @@ const SearchResultsPage = ({ movieResults }: Props) => {
     <Container bg={"#212121"} maxW={""} centerContent overflow={"hidden"}>
       <SearchCmp />
       <Box mt={4}>
-        <Text color={"#fff"}>search results for: {movie}</Text>
+        <Text color={"#fff"}>
+          search results for &quot;{decodeURIComponent(movie)}&quot;
+        </Text>
       </Box>
       {/* main */}
       <Box
-        w="85%"
+        w={{ base: "94%", md: "85%" }}
         display={"flex"}
         flexDir={"row"}
         flexWrap={"wrap"}
@@ -72,7 +74,7 @@ const SearchResultsPage = ({ movieResults }: Props) => {
         {searchResults.map((result, idx) => (
           <Box
             key={idx}
-            maxW={"30%"}
+            maxW={{ base: "48%", md: "30%" }}
             borderWidth="1px"
             rounded="lg"
             shadow="lg"
@@ -93,14 +95,16 @@ const SearchResultsPage = ({ movieResults }: Props) => {
               />
             ) : (
               <Box
-                width={200}
+                width={{ base: 157, md: 200 }}
                 height={200}
-                bg="gray.200"
+                bgColor="gray.900"
                 style={{
-                  borderTopLeftRadius: "5px",
-                  borderTopRightRadius: "5px",
+                  borderTopLeftRadius: "6px",
+                  borderTopRightRadius: "6px",
                 }}
-              />
+              >
+                No Image
+              </Box>
             )}
 
             <Box p="2" maxW={200}>

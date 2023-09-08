@@ -101,7 +101,7 @@ const CastPage = ({ castResult, crewResult }: Props) => {
           flexDir={{ base: "column", md: "row" }}
         >
           <Box>
-            <Text>Cast</Text>
+            <Text>Cast ({castDetails.length})</Text>
             {slicedCast?.map((cast) => (
               <Flex key={cast.id} gap={3} py={2}>
                 {/* fix image here */}
@@ -145,7 +145,7 @@ const CastPage = ({ castResult, crewResult }: Props) => {
             ))}
           </Box>
           <Box>
-            <Text>Crew</Text>
+            <Text>Crew ({crewDetails.length})</Text>
             {slicedCrew?.map((crew) => (
               <Flex key={crew.id} py={2}>
                 <Box>
