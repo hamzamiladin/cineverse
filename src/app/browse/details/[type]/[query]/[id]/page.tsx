@@ -7,7 +7,7 @@ import {
   MovieDetails,
   SeriesDetails,
 } from "../../../../../../../typings";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 
 const FooterCmp = dynamic(() => import("@/components/FooterCmp"));
@@ -22,7 +22,8 @@ interface Props {
 }
 
 const DetailsPage = ({ movieDetails, seriesDetails, castResult }: Props) => {
-  const { id, type } = useParams();
+  const { id, type, query } = useParams();
+  const router = useRouter();
   const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -36,6 +37,10 @@ const DetailsPage = ({ movieDetails, seriesDetails, castResult }: Props) => {
     const data = await res.json();
     return data;
   });
+
+  const routeToWatch = () => {
+    router.push(`/browse/details/${query}/watch`);
+  };
 
   const [mediaResult, setMediaResult] = useState<
     MovieDetails | SeriesDetails | null
@@ -78,6 +83,7 @@ const DetailsPage = ({ movieDetails, seriesDetails, castResult }: Props) => {
               movieDetails={type === "movie" ? mediaResult : movieDetails}
               seriesDetails={type === "tv" ? mediaResult : seriesDetails}
               productionCrew={crewDetails}
+              playMovie={routeToWatch}
             />
             <CastCmp castResult={castDetails} />
           </Box>

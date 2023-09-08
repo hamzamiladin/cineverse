@@ -13,14 +13,22 @@ import { SeriesDetails, MovieDetails, MovieCrew } from "../../typings";
 import Image from "next/image";
 import { baseUrl } from "@/constants/movie";
 import "./styles/buttons.css";
+import { useRouter } from "next/navigation";
 
 interface Props {
   movieDetails: MovieDetails;
   seriesDetails: SeriesDetails;
   productionCrew: MovieCrew[];
+  playMovie: () => void;
 }
 
-const DetailsCmp = ({ movieDetails, seriesDetails, productionCrew }: Props) => {
+const DetailsCmp = ({
+  movieDetails,
+  seriesDetails,
+  productionCrew,
+  playMovie,
+}: Props) => {
+  const router = useRouter();
   const sliceCrew = productionCrew.slice(0, 2);
 
   const movieRuntime = (time: number) => {
@@ -116,6 +124,7 @@ const DetailsCmp = ({ movieDetails, seriesDetails, productionCrew }: Props) => {
               px={5}
               size={{ base: "sm", md: "md" }}
               mt={2}
+              onClick={playMovie}
             >
               Play
             </Button>
@@ -223,6 +232,7 @@ const DetailsCmp = ({ movieDetails, seriesDetails, productionCrew }: Props) => {
               px={5}
               size={{ base: "sm", md: "md" }}
               mt={2}
+              onClick={playMovie}
             >
               Play
             </Button>
