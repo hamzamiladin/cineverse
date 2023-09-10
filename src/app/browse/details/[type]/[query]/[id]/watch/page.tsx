@@ -100,7 +100,6 @@ const PlayTrailer = ({ cineverseVideo }: Props) => {
           style={{ height: "67vh", pointerEvents: "auto" }}
         />
       </Box>
-
       <FooterCmp />
     </Container>
   );
