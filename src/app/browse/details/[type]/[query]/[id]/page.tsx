@@ -14,6 +14,7 @@ const FooterCmp = dynamic(() => import("@/components/FooterCmp"));
 const SearchCmp = dynamic(() => import("@/components/SearchCmp"));
 const DetailsCmp = dynamic(() => import("@/components/DetailsCmp"));
 const CastCmp = dynamic(() => import("@/components/CastCmp"));
+const Loader = dynamic(() => import("@/components/Loader"));
 
 interface Props {
   movieDetails: MovieDetails;
@@ -47,8 +48,8 @@ const DetailsPage = ({ movieDetails, seriesDetails, castResult }: Props) => {
   >(null);
 
   const [castDetails, setCastDetails] = useState<MovieCast[] | []>([]);
-
   const [crewDetails, setCrewDetails] = useState<MovieCrew[] | []>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -63,7 +64,12 @@ const DetailsPage = ({ movieDetails, seriesDetails, castResult }: Props) => {
         setCrewDetails(results.aggregate_credits.crew);
       }
     };
-    fetchData();
+
+    const timeout = setTimeout(() => {
+      setLoading(false);
+      fetchData();
+    }, 3000);
+    return () => clearTimeout(timeout);
   }, [getMediaDetails, id, type]);
 
   return (
@@ -75,20 +81,24 @@ const DetailsPage = ({ movieDetails, seriesDetails, castResult }: Props) => {
       overflow={"hidden"}
     >
       <SearchCmp />
-      <Box mt={7} w={{ base: "93%", md: "85%" }}>
-        {/* Pass the mediaResult to DetailsCmp */}
-        {mediaResult && castDetails && (
-          <Box>
-            <DetailsCmp
-              movieDetails={type === "movie" ? mediaResult : movieDetails}
-              seriesDetails={type === "tv" ? mediaResult : seriesDetails}
-              productionCrew={crewDetails}
-              playMovie={routeToWatch}
-            />
-            <CastCmp castResult={castDetails} />
-          </Box>
-        )}
-      </Box>
+      {loading ? (
+        <Loader />
+      ) : (
+        <Box mt={7} w={{ base: "93%", md: "85%" }}>
+          {/* Pass the mediaResult to DetailsCmp */}
+          {mediaResult && castDetails && (
+            <Box>
+              <DetailsCmp
+                movieDetails={type === "movie" ? mediaResult : movieDetails}
+                seriesDetails={type === "tv" ? mediaResult : seriesDetails}
+                productionCrew={crewDetails}
+                playMovie={routeToWatch}
+              />
+              <CastCmp castResult={castDetails} />
+            </Box>
+          )}
+        </Box>
+      )}
       <FooterCmp />
     </Container>
   );

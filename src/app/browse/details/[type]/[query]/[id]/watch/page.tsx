@@ -9,6 +9,7 @@ import YouTube, { YouTubeProps } from "react-youtube";
 
 const FooterCmp = dynamic(() => import("@/components/FooterCmp"));
 const SearchCmp = dynamic(() => import("@/components/SearchCmp"));
+const Loader = dynamic(() => import("@/components/Loader"));
 
 interface Props {
   cineverseVideo: Video[];
@@ -49,13 +50,19 @@ const PlayTrailer = ({ cineverseVideo }: Props) => {
   });
 
   const [videoResults, setVideoResults] = useState<Video[] | []>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       const result = await fetchVideo(type, id);
       setVideoResults(result);
     };
-    fetchData();
+    const timeout = setTimeout(() => {
+      setLoading(false);
+      fetchData();
+    }, 3000);
+
+    return () => clearTimeout(timeout);
   }, [fetchVideo, id, type]);
 
   return (
@@ -67,39 +74,45 @@ const PlayTrailer = ({ cineverseVideo }: Props) => {
       overflow={"hidden"}
     >
       <SearchCmp />
-      <Flex flexDir="row" my={4} gap={3}>
-        <Button onClick={backToPrev} colorScheme="red" variant="outline">
-          Previous
-        </Button>
-        <Button onClick={goHome} colorScheme="red" variant="outline">
-          Home
-        </Button>
-      </Flex>
-      <Box mb={3}>
-        <Text
-          fontSize={{ base: "", md: "2xl" }}
-          textTransform="uppercase"
-          color="gray.300"
-        >
-          Now Playing {`"${videoResults[0]?.name}"`}
-        </Text>
-      </Box>
-      <Box w="100%" h="100%" display={{ base: "none", md: "block" }}>
-        <YouTube
-          opts={opts}
-          onReady={onPlayerReady}
-          videoId={videoResults[0]?.key}
-          style={{ height: "70vh", pointerEvents: "auto" }}
-        />
-      </Box>
-      <Box w="100%" h="100%" display={{ base: "block", md: "none" }}>
-        <YouTube
-          opts={opts}
-          onReady={onPlayerReady}
-          videoId={videoResults[0]?.key}
-          style={{ height: "67vh", pointerEvents: "auto" }}
-        />
-      </Box>
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <Flex flexDir="row" my={4} gap={3}>
+            <Button onClick={backToPrev} colorScheme="red" variant="outline">
+              Previous
+            </Button>
+            <Button onClick={goHome} colorScheme="red" variant="outline">
+              Home
+            </Button>
+          </Flex>
+          <Box mb={3}>
+            <Text
+              fontSize={{ base: "", md: "2xl" }}
+              textTransform="uppercase"
+              color="gray.300"
+            >
+              Now Playing {`"${videoResults[0]?.name}"`}
+            </Text>
+          </Box>
+          <Box w="100%" h="100%" display={{ base: "none", md: "block" }}>
+            <YouTube
+              opts={opts}
+              onReady={onPlayerReady}
+              videoId={videoResults[0]?.key}
+              style={{ height: "70vh", pointerEvents: "auto" }}
+            />
+          </Box>
+          <Box w="100%" h="100%" display={{ base: "block", md: "none" }}>
+            <YouTube
+              opts={opts}
+              onReady={onPlayerReady}
+              videoId={videoResults[0]?.key}
+              style={{ height: "67vh", pointerEvents: "auto" }}
+            />
+          </Box>
+        </>
+      )}
       <FooterCmp />
     </Container>
   );
