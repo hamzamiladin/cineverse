@@ -124,9 +124,9 @@ const SearchResultsPage = ({ movieResults }: Props) => {
               </Box>
             ))}
           </Box>
+          <FooterCmp />
         </>
       )}
-      <FooterCmp />
     </Container>
   );
 };

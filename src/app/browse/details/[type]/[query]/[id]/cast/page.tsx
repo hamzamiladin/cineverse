@@ -220,9 +220,9 @@ const CastPage = ({ castResult, crewResult }: Props) => {
               </Button>
             </Flex>
           </Box>
+          <FooterCmp />
         </>
       )}
-      <FooterCmp />
     </Container>
   );
 };
