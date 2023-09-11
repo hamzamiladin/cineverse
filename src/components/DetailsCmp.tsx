@@ -5,19 +5,35 @@ import {
   Grid,
   GridItem,
   Text,
+  HStack,
+  Flex,
+  Button,
 } from "@chakra-ui/react";
 import { SeriesDetails, MovieDetails, MovieCrew } from "../../typings";
 import Image from "next/image";
 import { baseUrl } from "@/constants/movie";
+import "./styles/buttons.css";
 
 interface Props {
   movieDetails: MovieDetails;
   seriesDetails: SeriesDetails;
   productionCrew: MovieCrew[];
+  playMovie: () => void;
 }
 
-const DetailsCmp = ({ movieDetails, seriesDetails, productionCrew }: Props) => {
+const DetailsCmp = ({
+  movieDetails,
+  seriesDetails,
+  productionCrew,
+  playMovie,
+}: Props) => {
   const sliceCrew = productionCrew.slice(0, 2);
+
+  const movieRuntime = (time: number) => {
+    let hours = Math.floor(time / 60);
+    let minutes = time % 60;
+    return `${hours}h ${minutes}m`;
+  };
 
   if (movieDetails) {
     const date = movieDetails.release_date;
@@ -30,9 +46,8 @@ const DetailsCmp = ({ movieDetails, seriesDetails, productionCrew }: Props) => {
       <Box>
         <Text
           textTransform="uppercase"
-          fontSize={{ base: "xl", md: "3xl" }}
-          whiteSpace="nowrap"
-          my={2}
+          fontSize={{ base: "md", md: "3xl" }}
+          py={2}
         >
           {`${movieDetails?.title} (${year})`}
         </Text>
@@ -41,11 +56,12 @@ const DetailsCmp = ({ movieDetails, seriesDetails, productionCrew }: Props) => {
           backgroundSize="cover"
           bgRepeat={"no-repeat"}
           width={"100%"}
-          h={"50vh"}
-          p={8}
+          h={{ base: "70vh", md: "50vh" }}
+          py={8}
+          px={{ base: 3, md: 8 }}
           templateColumns="repeat(4, 1fr)"
         >
-          <GridItem>
+          <GridItem display={{ base: "none", md: "grid" }}>
             <Image
               src={`${baseUrl}${movieDetails?.poster_path}`}
               alt="poster"
@@ -53,23 +69,40 @@ const DetailsCmp = ({ movieDetails, seriesDetails, productionCrew }: Props) => {
               height={200}
             />
           </GridItem>
-          <GridItem colSpan={3}>
+          <GridItem colSpan={{ base: 4, md: 3 }}>
             <Text fontStyle="italic">{movieDetails?.tagline}</Text>
-            <UnorderedList
-              display={"flex"}
-              flexDir="row"
-              listStyleType="none"
-              gap={5}
-            >
-              {movieDetails?.genres?.map((genre, idx) => (
-                <ListItem key={idx}>{genre.name}</ListItem>
-              ))}
-            </UnorderedList>
-
-            <Text fontSize={{ base: "2xl", md: "xl" }} pt={4}>
+            <HStack>
+              <UnorderedList
+                display={"flex"}
+                flexDir="row"
+                flexWrap="wrap"
+                listStyleType="none"
+                gap={5}
+              >
+                {movieDetails?.genres?.map((genre, idx) => (
+                  <ListItem key={idx}>{genre.name}</ListItem>
+                ))}
+              </UnorderedList>
+              <Text>|</Text>
+              <Box display={{ base: "none", md: "block" }}>
+                <Text>
+                  {movieDetails?.runtime
+                    ? movieRuntime(movieDetails.runtime)
+                    : "N/A"}
+                </Text>
+              </Box>
+            </HStack>
+            <Box display={{ md: "none" }}>
+              <Text>
+                {movieDetails?.runtime
+                  ? movieRuntime(movieDetails.runtime)
+                  : "N/A"}
+              </Text>
+            </Box>
+            <Text fontSize={{ base: "lg", md: "xl" }} pt={4}>
               Overview
             </Text>
-            <Text fontSize={{ base: "", md: "lg" }}>
+            <Text fontSize={{ base: "md", md: "lg" }}>
               {movieDetails?.overview}
             </Text>
 
@@ -84,6 +117,15 @@ const DetailsCmp = ({ movieDetails, seriesDetails, productionCrew }: Props) => {
                   </ListItem>
                 ))}
             </UnorderedList>
+            <Button
+              className="play-btn"
+              px={5}
+              size={{ base: "sm", md: "md" }}
+              mt={2}
+              onClick={playMovie}
+            >
+              Play
+            </Button>
           </GridItem>
         </Grid>
       </Box>
@@ -102,9 +144,8 @@ const DetailsCmp = ({ movieDetails, seriesDetails, productionCrew }: Props) => {
       <Box>
         <Text
           textTransform="uppercase"
-          fontSize={{ base: "xl", md: "3xl" }}
-          whiteSpace="nowrap"
-          my={2}
+          fontSize={{ base: "md", md: "3xl" }}
+          py={2}
         >
           {`${seriesDetails?.name} (${seriesYear})`}
         </Text>
@@ -113,11 +154,12 @@ const DetailsCmp = ({ movieDetails, seriesDetails, productionCrew }: Props) => {
           backgroundSize="cover"
           bgRepeat={"no-repeat"}
           width={"100%"}
-          h={"50vh"}
-          p={8}
+          h={{ base: "60vh", md: "56vh" }}
+          py={8}
+          px={{ base: 4, md: 8 }}
           templateColumns="repeat(4, 1fr)"
         >
-          <GridItem>
+          <GridItem display={{ base: "none", md: "grid" }}>
             <Image
               src={`${baseUrl}${seriesDetails?.poster_path}`}
               alt="poster"
@@ -125,7 +167,7 @@ const DetailsCmp = ({ movieDetails, seriesDetails, productionCrew }: Props) => {
               height={200}
             />
           </GridItem>
-          <GridItem colSpan={3}>
+          <GridItem colSpan={{ base: 4, md: 3 }}>
             <UnorderedList
               display={"flex"}
               flexDir="row"
@@ -134,14 +176,23 @@ const DetailsCmp = ({ movieDetails, seriesDetails, productionCrew }: Props) => {
             >
               {seriesDetails?.genres?.map((genre, idx) => (
                 <ListItem key={idx} fontSize={{ base: "", md: "md" }}>
-                  {genre.name}
+                  <Text>{genre.name}</Text>
                 </ListItem>
               ))}
             </UnorderedList>
-            <Text fontSize={{ base: "2xl", md: "xl" }} pt={4}>
+            <Flex flexDir="column" mt={2}>
+              <Text>
+                Seasons {`(${seriesDetails?.number_of_seasons || "N/A"})`}
+              </Text>
+              <Text>
+                All Episodes {`(${seriesDetails?.number_of_episodes || "N/A"})`}
+              </Text>
+            </Flex>
+
+            <Text fontSize={{ base: "lg", md: "xl" }} pt={4}>
               Overview
             </Text>
-            <Text fontSize={{ base: "", md: "lg" }}>
+            <Text fontSize={{ base: "md", md: "lg" }}>
               {seriesDetails?.overview}
             </Text>
             <UnorderedList display={"flex"} gap={8} listStyleType="none" pt={4}>
@@ -149,33 +200,44 @@ const DetailsCmp = ({ movieDetails, seriesDetails, productionCrew }: Props) => {
                 ? seriesDetails.created_by.map((crew, idx) => (
                     <ListItem key={idx}>
                       <Text
-                        fontSize={{ base: "", md: "lg" }}
+                        fontSize={{ base: "md", md: "lg" }}
                         fontWeight={"bold"}
                       >
                         {crew.name}
                       </Text>
-                      <Text fontSize={{ base: "", md: "lg" }}>Creator</Text>
+                      <Text fontSize={{ base: "md", md: "lg" }}>Creator</Text>
                     </ListItem>
                   ))
                 : seriesDetails.aggregate_credits &&
                   seriesDetails.aggregate_credits.crew
-                ? seriesDetails.aggregate_credits.crew.map((crew, idx) => (
-                    <ListItem key={idx}>
-                      <Text
-                        fontSize={{ base: "", md: "lg" }}
-                        fontWeight={"bold"}
-                      >
-                        {crew.name}
-                      </Text>
-                      <Text fontSize={{ base: "", md: "lg" }}>
-                        {crew.jobs && crew.jobs.length > 0
-                          ? crew.jobs[0].job
-                          : "Creator"}
-                      </Text>
-                    </ListItem>
-                  ))
+                ? seriesDetails.aggregate_credits.crew
+                    .slice(0, 2)
+                    .map((crew, idx) => (
+                      <ListItem key={idx}>
+                        <Text
+                          fontSize={{ base: "", md: "lg" }}
+                          fontWeight={"bold"}
+                        >
+                          {crew.name}
+                        </Text>
+                        <Text fontSize={{ base: "", md: "lg" }}>
+                          {crew.jobs && crew.jobs.length > 0
+                            ? crew.jobs[0].job
+                            : "Creator"}
+                        </Text>
+                      </ListItem>
+                    ))
                 : null}
             </UnorderedList>
+            <Button
+              className="play-btn"
+              px={5}
+              size={{ base: "sm", md: "md" }}
+              mt={2}
+              onClick={playMovie}
+            >
+              Play
+            </Button>
           </GridItem>
         </Grid>
       </Box>

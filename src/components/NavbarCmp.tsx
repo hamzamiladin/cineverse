@@ -27,7 +27,7 @@ interface Props {
 // const links = ["Home", "TV Shows", , "My List", ];
 const links: Array<Props> = [
   { name: "Home", url: "/browse" },
-  { name: "TV Shows", url: "/browse/tv-series" },
+  { name: "TV Shows", url: "/browse/tv" },
   { name: "Movies", url: "/browse/movies" },
   { name: "My List", url: "/browse/my-list" },
 ];

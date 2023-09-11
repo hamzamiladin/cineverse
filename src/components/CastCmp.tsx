@@ -24,7 +24,7 @@ const CastCmp = ({ castResult }: Props) => {
   };
 
   return (
-    <Box w="85%">
+    <Box>
       <Flex
         display={"flex"}
         flexDir={"row"}
@@ -38,7 +38,7 @@ const CastCmp = ({ castResult }: Props) => {
           slicedCast.map((cast, idx) => (
             <Box
               key={idx}
-              maxW={"35%"}
+              maxW={{ base: "48%", md: "35%" }}
               borderWidth="1px"
               rounded="lg"
               shadow="lg"
@@ -58,8 +58,8 @@ const CastCmp = ({ castResult }: Props) => {
                 />
               ) : (
                 <Box
-                  width={200}
-                  height={300}
+                  w={{ base: 150, md: 200 }}
+                  height={{ base: 240, md: 300 }}
                   style={{
                     borderTopLeftRadius: "5.2px",
                     borderTopRightRadius: "5.2px",
@@ -70,7 +70,7 @@ const CastCmp = ({ castResult }: Props) => {
                   NO IMAGE
                 </Box>
               )}
-              <Box p={2} w={200} h={115}>
+              <Box p={2} w={{ base: 150, md: 200 }} h={115}>
                 <Text fontWeight={"bold"}>{cast.name}</Text>
                 <Text>{cast.character}</Text>
                 {cast.roles && cast.roles.length > 0 && (
@@ -85,7 +85,7 @@ const CastCmp = ({ castResult }: Props) => {
       </Flex>
       <Box>
         <Button colorScheme="red" variant="outline" onClick={handleClick}>
-          View More
+          FULL CAST
         </Button>
       </Box>
     </Box>

@@ -68,7 +68,7 @@ const ListHeader = ({ children }: { children: ReactNode }) => {
 export default function FooterCmp() {
   return (
     <Box color="gray.300">
-      <Container as={Stack} maxW={"6xl"} py={10}>
+      <Container as={Stack} maxW={"6xl"} py={10} overflow={"hidden"}>
         <SimpleGrid
           templateColumns={{ sm: "1fr 1fr", md: "2fr 1fr 1fr 2fr" }}
           spacing={8}

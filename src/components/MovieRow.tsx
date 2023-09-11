@@ -39,7 +39,7 @@ const MovieRow = ({ movies, series }: Props) => {
   };
 
   return (
-    <Box w={{ base: "97vw", md: "87vw" }}>
+    <Box w={{ base: "93vw", md: "87vw" }}>
       <Swiper
         slidesPerView={2}
         spaceBetween={7}
@@ -55,7 +55,7 @@ const MovieRow = ({ movies, series }: Props) => {
             spaceBetween: 25,
           },
           1024: {
-            slidesPerView: 5,
+            slidesPerView: 6,
             spaceBetween: 30,
           },
         }}
@@ -73,7 +73,8 @@ const MovieRow = ({ movies, series }: Props) => {
             className={style.swiperSlide}
             style={{
               backgroundImage: `url(${baseUrl}${movie?.poster_path})`,
-              backgroundSize: "cover",
+              backgroundSize: "contain",
+              backgroundRepeat: "no-repeat",
               height: "44vh",
               width: "13vw",
             }}
@@ -86,7 +87,8 @@ const MovieRow = ({ movies, series }: Props) => {
             className={style.swiperSlide}
             style={{
               backgroundImage: `url(${baseUrl}${seriesItem?.poster_path})`,
-              backgroundSize: "cover",
+              backgroundSize: "contain",
+              backgroundRepeat: "no-repeat",
               height: "44vh",
               width: "13vw",
             }}
