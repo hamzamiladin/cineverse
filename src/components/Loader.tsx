@@ -14,7 +14,7 @@ const Loader = () => {
       justifyContent="center"
     >
       <Box className="loader">
-        <Text color="orange.800" fontWeight="extrabold" fontSize="4xl">
+        <Text color="red.500" fontWeight="extrabold" fontSize="4xl">
           <span className="letter letter1">C</span>
           <span className="letter letter2">I</span>
           <span className="letter letter3">N</span>

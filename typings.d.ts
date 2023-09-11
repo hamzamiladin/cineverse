@@ -10,6 +10,7 @@ export interface Movie {
   poster_path: string;
   release_date: string;
   title: string;
+  media_type?: string;
 }
 
 export interface Genre {
@@ -73,6 +74,7 @@ export interface SeriesDetails {
   overview: string;
   popularity?: number;
   poster_path?: string;
+  media_type?: string;
   videos?: {
     results: Array<Video>;
   };
