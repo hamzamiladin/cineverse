@@ -112,8 +112,8 @@ const CastPage = ({ castResult, crewResult }: Props) => {
             >
               <Box>
                 <Text>Cast ({castDetails.length})</Text>
-                {slicedCast?.map((cast) => (
-                  <Flex key={cast.id} gap={3} py={2}>
+                {slicedCast?.map((cast, idx) => (
+                  <Flex key={idx} gap={3} py={2}>
                     {/* fix image here */}
                     {cast.profile_path ? (
                       <Box>
@@ -156,8 +156,8 @@ const CastPage = ({ castResult, crewResult }: Props) => {
               </Box>
               <Box>
                 <Text>Crew ({crewDetails.length})</Text>
-                {slicedCrew?.map((crew) => (
-                  <Flex key={crew.id} py={2}>
+                {slicedCrew?.map((crew, idx) => (
+                  <Flex key={idx} py={2}>
                     <Box>
                       <Flex gap={3}>
                         {crew.profile_path ? (

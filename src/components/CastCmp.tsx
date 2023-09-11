@@ -70,7 +70,7 @@ const CastCmp = ({ castResult }: Props) => {
                   NO IMAGE
                 </Box>
               )}
-              <Box p={2} w={{ base: 150, md: 200 }} h={115}>
+              <Box p={2} w={{ base: 150, md: 200 }} h={{ base: 137, md: 115 }}>
                 <Text fontWeight={"bold"}>{cast.name}</Text>
                 <Text>{cast.character}</Text>
                 {cast.roles && cast.roles.length > 0 && (
