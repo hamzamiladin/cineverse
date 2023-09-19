@@ -17,6 +17,7 @@ import {
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { AiOutlineUser } from "react-icons/ai";
 import Link from "next/link";
+import { useSession, signOut, signIn } from "next-auth/react";
 // import "./styles/index.css";
 
 interface Props {
@@ -37,6 +38,7 @@ const NavLink = (props: Props) => {
 };
 
 export default function NavbarCmp() {
+  const { data: session } = useSession();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -88,7 +90,9 @@ export default function NavbarCmp() {
                 <MenuItem>Account</MenuItem>
                 <MenuItem>Settings</MenuItem>
                 <MenuDivider />
-                <MenuItem>Sign Out</MenuItem>
+                {session && session.user && (
+                  <MenuItem onClick={() => signOut}>Sign Out</MenuItem>
+                )}
               </MenuList>
             </Menu>
           </Flex>
@@ -113,6 +117,8 @@ export default function NavbarCmp() {
 }
 
 export const LoginNav = () => {
+  const { data: session } = useSession();
+
   return (
     <Box className="container">
       <Flex
@@ -127,9 +133,16 @@ export const LoginNav = () => {
           <Image src="/images/cineverse-logo.png" alt="logo" boxSize={"35%"} />
         </Box>
         <Box>
-          <Button colorScheme="orange" variant="outline" size={"sm"}>
-            Sign In
-          </Button>
+          {session && session.user && (
+            <Button
+              colorScheme="orange"
+              variant="outline"
+              size={"sm"}
+              onClick={() => signIn()}
+            >
+              Sign In
+            </Button>
+          )}
         </Box>
       </Flex>
     </Box>

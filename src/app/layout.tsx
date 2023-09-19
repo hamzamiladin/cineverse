@@ -3,6 +3,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { inter } from "./fonts";
+import { SessionProvider } from "next-auth/react";
 import { ChakraProvider } from "@chakra-ui/react";
 import NavbarCmp from "@/components/NavbarCmp";
 import { LoginNav } from "@/components/NavbarCmp";
@@ -33,10 +34,12 @@ export default function RootLayout({
         <title>Cineverse</title>
       </head>
       <body className={inter.className}>
-        <ChakraProvider>
-          {pathname === "/" ? <LoginNav /> : <NavbarCmp />}
-          {children}
-        </ChakraProvider>
+        <SessionProvider>
+          <ChakraProvider>
+            {pathname === "/" ? <LoginNav /> : <NavbarCmp />}
+            {children}
+          </ChakraProvider>
+        </SessionProvider>
       </body>
     </html>
   );
