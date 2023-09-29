@@ -33,7 +33,7 @@ const LoginCmp = () => {
         status: "success",
         description: "You have successfully logged in",
       });
-      router.push("/browse");
+      /* router.push("/"); */
     }
   };
 
