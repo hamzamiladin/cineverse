@@ -66,7 +66,7 @@ const LoginCmp = () => {
             lineHeight={1.2}
             fontSize={useBreakpointValue({ base: "2xl", md: "3xl" })}
           >
-            Watch anywhere Cancel anytime.
+            Watch anywhere.
           </Text>
           <Stack direction={"row"}>
             <Button

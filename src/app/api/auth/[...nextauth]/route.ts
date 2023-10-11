@@ -15,7 +15,7 @@ const handler = NextAuth({
       },
     }),
   ],
-  callbacks: {
+  /*   callbacks: {
     async redirect({ url, baseUrl }) {
       console.log({ url, baseUrl });
       const sections = url.split("/");
@@ -29,7 +29,7 @@ const handler = NextAuth({
       console.log({ sections, slicedSections, returnedUrl });
       return returnedUrl;
     },
-  },
+  }, */
 });
 
 export { handler as GET, handler as POST };

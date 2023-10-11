@@ -76,11 +76,21 @@ const Banner = ({ cineverseOriginals }: Props) => {
             }}
           >
             <Box
+              pos="absolute"
+              bottom={0}
+              left={0}
+              bg="linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.7))"
+              w="100%"
+              h="50%"
+            />
+            <Box
               display={"flex"}
               flexDir={"column"}
               pos={{ md: "absolute" }}
               bottom={0}
               p={8}
+              maxW="68%"
+              left={0}
             >
               <Text color={"#fff"} fontWeight={700} fontSize={"2xl"}>
                 {movie.original_title || movie.title}

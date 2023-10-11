@@ -13,6 +13,7 @@ import {
   MenuDivider,
   useDisclosure,
   Stack,
+  useToast,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { AiOutlineUser } from "react-icons/ai";
@@ -119,6 +120,30 @@ export default function NavbarCmp() {
 export const LoginNav = () => {
   const { data: session } = useSession();
 
+  const toast = useToast({
+    position: "top",
+    containerStyle: {
+      zIndex: 9,
+    },
+  });
+  ("");
+
+  const handleSignIn = async () => {
+    const result = await signIn("google");
+    if (result?.error) {
+      return toast({
+        status: "error",
+        description: `Oops! there was an issue that action, please try again`,
+      });
+    } else if (result?.ok) {
+      toast({
+        status: "success",
+        description: "You have successfully logged in",
+      });
+      /* router.push("/"); */
+    }
+  };
+
   return (
     <Box className="container">
       <Flex
@@ -133,16 +158,14 @@ export const LoginNav = () => {
           <Image src="/images/cineverse-logo.png" alt="logo" boxSize={"35%"} />
         </Box>
         <Box>
-          {session && session.user && (
-            <Button
-              colorScheme="orange"
-              variant="outline"
-              size={"sm"}
-              onClick={() => signIn()}
-            >
-              Sign In
-            </Button>
-          )}
+          <Button
+            colorScheme="orange"
+            variant="outline"
+            size={"sm"}
+            onClick={handleSignIn}
+          >
+            Sign In
+          </Button>
         </Box>
       </Flex>
     </Box>
