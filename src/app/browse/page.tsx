@@ -66,7 +66,7 @@ const Home: React.FC<Props> = () => {
       ) : (
         <>
           <Banner cineverseOriginals={cineverseOriginals || []} />
-          <Box mt={8}>
+          <Box mt={{ base: 0, md: 14 }}>
             {/* popular movies */}
             <Box>
               <Text fontSize={"xl"} fontWeight={600} color={"#fff"}>

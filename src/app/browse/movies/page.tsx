@@ -57,7 +57,7 @@ const MoviesPage: React.FC<Props> = () => {
   );
   const { data: adventureMovies } = useSWR(
     "adventureMovies",
-    fetchers.fetchAnimation
+    fetchers.fetchAdventure
   );
   const { data: horrorMovies } = useSWR("horrorMovies", fetchers.fetchHorror);
 
