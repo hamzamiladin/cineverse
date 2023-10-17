@@ -56,11 +56,11 @@ const Banner = ({ cineverseOriginals }: Props) => {
   }, [slicedMovies]);
 
   return (
-    <Box mt={12} w="90%">
+    <Box mt={12} w={{ base: "97%", md: "90%" }}>
       <Swiper
         pagination={{ type: "progressbar" }}
-        navigation={true}
-        modules={[Pagination, Navigation]}
+        autoplay={{ delay: 3500, disableOnInteraction: false }}
+        modules={[Pagination]}
         className="mySwiper"
       >
         {slicedMovies.map((movie, idx) => (
@@ -73,23 +73,48 @@ const Banner = ({ cineverseOriginals }: Props) => {
               })`,
               backgroundSize: "cover",
               minHeight: "60vh",
+              ...(window.innerWidth <= 768 && {
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+                backgroundImage: `url(${baseUrl}${movie.poster_path})`,
+              }),
             }}
           >
             <Box
+              pos="absolute"
+              bottom={0}
+              left={0}
+              bg="linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.7))"
+              w="100%"
+              h="50%"
+            />
+            <Box
               display={"flex"}
               flexDir={"column"}
-              pos={{ md: "absolute" }}
+              pos="absolute"
               bottom={0}
-              p={8}
+              px={8}
+              pb={4}
+              maxW={{ base: "100%", md: "70%" }}
+              left={0}
             >
-              <Text color={"#fff"} fontWeight={700} fontSize={"2xl"}>
+              <Text
+                color={"#fff"}
+                fontWeight={700}
+                fontSize={"2xl"}
+                display={{ base: "none", md: "block" }}
+              >
                 {movie.original_title || movie.title}
               </Text>
-              <Text color={"#fff"} fontSize={"lg"}>
+              <Text
+                color={"#fff"}
+                fontSize={"lg"}
+                display={{ base: "none", md: "block" }}
+              >
                 {movie.overview}
               </Text>
-              <Flex gap={6}>
-                <Button
+              <Flex gap={6} mt={3}>
+                {/* <Button
                   onClick={() => {
                     if (showVideo) {
                       handleClose();
@@ -99,7 +124,7 @@ const Banner = ({ cineverseOriginals }: Props) => {
                   }}
                 >
                   {showVideo ? "CANCEL" : "PLAY"}
-                </Button>
+                </Button> */}
                 <Link
                   href={`/browse/details/movie/${handleTitle(movie.title)}/${
                     movie.id
@@ -108,9 +133,9 @@ const Banner = ({ cineverseOriginals }: Props) => {
                   <Button>More Info</Button>
                 </Link>
               </Flex>
-              {showVideo && (
+              {/*   {showVideo && (
                 <YoutubeCmp key={showVideo.key} cineverseVideos={showVideo} />
-              )}
+              )} */}
             </Box>
           </SwiperSlide>
         ))}

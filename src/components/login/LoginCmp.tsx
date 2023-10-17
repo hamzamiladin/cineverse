@@ -5,9 +5,38 @@ import {
   Text,
   VStack,
   useBreakpointValue,
+  useToast,
 } from "@chakra-ui/react";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const LoginCmp = () => {
+  const { data: session } = useSession();
+
+  const router = useRouter();
+  const toast = useToast({
+    position: "top",
+    containerStyle: {
+      zIndex: 9,
+    },
+  });
+
+  const handleSignIn = async () => {
+    const result = await signIn("google");
+    if (result?.error) {
+      return toast({
+        status: "error",
+        description: `Oops! there was an issue that action, please try again`,
+      });
+    } else if (result?.ok) {
+      toast({
+        status: "success",
+        description: "You have successfully logged in",
+      });
+      /* router.push("/"); */
+    }
+  };
+
   return (
     <Flex
       w={"full"}
@@ -37,7 +66,7 @@ const LoginCmp = () => {
             lineHeight={1.2}
             fontSize={useBreakpointValue({ base: "2xl", md: "3xl" })}
           >
-            Watch anywhere Cancel anytime.
+            Watch anywhere.
           </Text>
           <Stack direction={"row"}>
             <Button
@@ -45,7 +74,7 @@ const LoginCmp = () => {
               rounded={"lg"}
               color={"white"}
               _hover={{ bg: "orange.800" }}
-              onClick={() => {}}
+              onClick={handleSignIn}
             >
               Show me more
             </Button>

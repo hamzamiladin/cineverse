@@ -13,10 +13,12 @@ import {
   MenuDivider,
   useDisclosure,
   Stack,
+  useToast,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { AiOutlineUser } from "react-icons/ai";
 import Link from "next/link";
+import { useSession, signOut, signIn } from "next-auth/react";
 // import "./styles/index.css";
 
 interface Props {
@@ -37,6 +39,7 @@ const NavLink = (props: Props) => {
 };
 
 export default function NavbarCmp() {
+  const { data: session } = useSession();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -88,7 +91,9 @@ export default function NavbarCmp() {
                 <MenuItem>Account</MenuItem>
                 <MenuItem>Settings</MenuItem>
                 <MenuDivider />
-                <MenuItem>Sign Out</MenuItem>
+                {session && session.user && (
+                  <MenuItem onClick={() => signOut}>Sign Out</MenuItem>
+                )}
               </MenuList>
             </Menu>
           </Flex>
@@ -113,6 +118,32 @@ export default function NavbarCmp() {
 }
 
 export const LoginNav = () => {
+  const { data: session } = useSession();
+
+  const toast = useToast({
+    position: "top",
+    containerStyle: {
+      zIndex: 9,
+    },
+  });
+  ("");
+
+  const handleSignIn = async () => {
+    const result = await signIn("google");
+    if (result?.error) {
+      return toast({
+        status: "error",
+        description: `Oops! there was an issue that action, please try again`,
+      });
+    } else if (result?.ok) {
+      toast({
+        status: "success",
+        description: "You have successfully logged in",
+      });
+      /* router.push("/"); */
+    }
+  };
+
   return (
     <Box className="container">
       <Flex
@@ -127,7 +158,12 @@ export const LoginNav = () => {
           <Image src="/images/cineverse-logo.png" alt="logo" boxSize={"35%"} />
         </Box>
         <Box>
-          <Button colorScheme="orange" variant="outline" size={"sm"}>
+          <Button
+            colorScheme="orange"
+            variant="outline"
+            size={"sm"}
+            onClick={handleSignIn}
+          >
             Sign In
           </Button>
         </Box>

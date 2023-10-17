@@ -84,22 +84,24 @@ const DetailsPage = ({ movieDetails, seriesDetails, castResult }: Props) => {
       {loading ? (
         <Loader />
       ) : (
-        <Box mt={7} w={{ base: "93%", md: "85%" }}>
-          {/* Pass the mediaResult to DetailsCmp */}
-          {mediaResult && castDetails && (
-            <Box>
-              <DetailsCmp
-                movieDetails={type === "movie" ? mediaResult : movieDetails}
-                seriesDetails={type === "tv" ? mediaResult : seriesDetails}
-                productionCrew={crewDetails}
-                playMovie={routeToWatch}
-              />
-              <CastCmp castResult={castDetails} />
-            </Box>
-          )}
-        </Box>
+        <>
+          <Box mt={7} w={{ base: "93%", md: "85%" }}>
+            {/* Pass the mediaResult to DetailsCmp */}
+            {mediaResult && castDetails && (
+              <Box>
+                <DetailsCmp
+                  movieDetails={type === "movie" ? mediaResult : movieDetails}
+                  seriesDetails={type === "tv" ? mediaResult : seriesDetails}
+                  productionCrew={crewDetails}
+                  playMovie={routeToWatch}
+                />
+                <CastCmp castResult={castDetails} />
+              </Box>
+            )}
+          </Box>
+          <FooterCmp />
+        </>
       )}
-      <FooterCmp />
     </Container>
   );
 };

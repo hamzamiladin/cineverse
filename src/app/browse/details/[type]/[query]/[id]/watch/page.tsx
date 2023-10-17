@@ -22,9 +22,9 @@ const PlayTrailer = ({ cineverseVideo }: Props) => {
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
   const backToPrev = () => {
-    router.back;
+    router.push(`/browse/details/${type}/${query}/${id}`);
   };
-
+  
   const goHome = () => {
     router.push(`/browse`);
   };
@@ -111,9 +111,9 @@ const PlayTrailer = ({ cineverseVideo }: Props) => {
               style={{ height: "67vh", pointerEvents: "auto" }}
             />
           </Box>
+          <FooterCmp />
         </>
       )}
-      <FooterCmp />
     </Container>
   );
 };
