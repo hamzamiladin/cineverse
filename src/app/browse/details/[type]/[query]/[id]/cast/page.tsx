@@ -17,7 +17,6 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
-import useSWR from "swr";
 
 const FooterCmp = dynamic(() => import("@/components/FooterCmp"));
 const SearchCmp = dynamic(() => import("@/components/SearchCmp"));
@@ -122,6 +121,7 @@ const CastPage = ({ castResult, crewResult }: Props) => {
                           alt="cast-picture"
                           width={90}
                           height={90}
+                          style={{ borderRadius: "5.2px" }}
                         />
                       </Box>
                     ) : (
@@ -130,8 +130,7 @@ const CastPage = ({ castResult, crewResult }: Props) => {
                         h={130}
                         bg="gray.200"
                         style={{
-                          borderTopLeftRadius: "5.2px",
-                          borderTopRightRadius: "5.2px",
+                          borderRadius: "5.2px",
                         }}
                         py={2}
                         alignItems="center"
@@ -142,12 +141,23 @@ const CastPage = ({ castResult, crewResult }: Props) => {
                     )}
 
                     <Box>
-                      <Text fontWeight={"bold"}>{cast.name}</Text>
-                      <Text>{cast.character}</Text>
+                      <Text
+                        fontWeight={"bold"}
+                        fontSize={{ base: "13px", md: "16px" }}
+                      >
+                        {cast.name}
+                      </Text>
+                      <Text fontSize={{ base: "13px", md: "16px" }}>
+                        {cast.character}
+                      </Text>
                       {cast.roles && cast.roles.length > 0 && (
                         <Box>
-                          <Text>{cast.roles[0].character}</Text>
-                          <Text>{`${cast.roles[0].episode_count} Episodes`}</Text>
+                          <Text fontSize={{ base: "13px", md: "16px" }}>
+                            {cast.roles[0].character}
+                          </Text>
+                          <Text
+                            fontSize={{ base: "13px", md: "16px" }}
+                          >{`${cast.roles[0].episode_count} Episodes`}</Text>
                         </Box>
                       )}
                     </Box>
@@ -167,6 +177,9 @@ const CastPage = ({ castResult, crewResult }: Props) => {
                               alt="crew-picture"
                               width={90}
                               height={90}
+                              style={{
+                                borderRadius: "5.2px",
+                              }}
                             />
                           </Box>
                         ) : (
@@ -189,10 +202,19 @@ const CastPage = ({ castResult, crewResult }: Props) => {
                         )}
 
                         <Box>
-                          <Text fontWeight={"bold"}>{crew.name}</Text>
-                          <Text>{crew.job}</Text>
+                          <Text
+                            fontWeight={"bold"}
+                            fontSize={{ base: "13px", md: "16px" }}
+                          >
+                            {crew.name}
+                          </Text>
+                          <Text fontSize={{ base: "13px", md: "16px" }}>
+                            {crew.job}
+                          </Text>
                           {crew.jobs && crew.jobs.length > 0 && (
-                            <Text>{crew.jobs[0].job}</Text>
+                            <Text fontSize={{ base: "13px", md: "16px" }}>
+                              {crew.jobs[0].job}
+                            </Text>
                           )}
                         </Box>
                       </Flex>

@@ -33,7 +33,7 @@ export default function RootLayout({
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <title>Cineverse</title>
       </head>
-      <body className={inter.className}>
+      <body style={{ background: "#212121" }} className={inter.className}>
         <SessionProvider>
           <ChakraProvider>
             {pathname === "/" ? <LoginNav /> : <NavbarCmp />}

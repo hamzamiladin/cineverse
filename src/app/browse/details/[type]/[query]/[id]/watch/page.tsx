@@ -24,7 +24,7 @@ const PlayTrailer = ({ cineverseVideo }: Props) => {
   const backToPrev = () => {
     router.push(`/browse/details/${type}/${query}/${id}`);
   };
-  
+
   const goHome = () => {
     router.push(`/browse`);
   };
@@ -79,10 +79,20 @@ const PlayTrailer = ({ cineverseVideo }: Props) => {
       ) : (
         <>
           <Flex flexDir="row" my={4} gap={3}>
-            <Button onClick={backToPrev} colorScheme="red" variant="outline">
+            <Button
+              onClick={backToPrev}
+              colorScheme="red"
+              variant="outline"
+              size={{ base: "sm", md: "lg" }}
+            >
               Previous
             </Button>
-            <Button onClick={goHome} colorScheme="red" variant="outline">
+            <Button
+              onClick={goHome}
+              colorScheme="red"
+              variant="outline"
+              size={{ base: "sm", md: "lg" }}
+            >
               Home
             </Button>
           </Flex>
