@@ -14,10 +14,10 @@ import {
   useDisclosure,
   Stack,
   useToast,
+  Link,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { AiOutlineUser } from "react-icons/ai";
-import Link from "next/link";
 import { useSession, signOut, signIn } from "next-auth/react";
 // import "./styles/index.css";
 
@@ -35,7 +35,11 @@ const links: Array<Props> = [
 ];
 
 const NavLink = (props: Props) => {
-  return <Link href={props.url}>{props.name}</Link>;
+  return (
+    <Link href={props.url} w="100px">
+      {props.name}
+    </Link>
+  );
 };
 
 export default function NavbarCmp() {

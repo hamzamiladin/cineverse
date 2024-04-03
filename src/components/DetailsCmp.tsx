@@ -56,10 +56,10 @@ const DetailsCmp = ({
           backgroundSize="cover"
           bgRepeat={"no-repeat"}
           width={"100%"}
-          h={{ base: "70vh", md: "50vh" }}
           py={8}
           px={{ base: 3, md: 8 }}
           templateColumns="repeat(4, 1fr)"
+          gap={4}
         >
           <GridItem display={{ base: "none", md: "grid" }}>
             <Image
@@ -70,7 +70,9 @@ const DetailsCmp = ({
             />
           </GridItem>
           <GridItem colSpan={{ base: 4, md: 3 }}>
-            <Text fontStyle="italic">{movieDetails?.tagline}</Text>
+            <Text fontStyle="italic" fontSize={{ base: "14px", lg: "16px" }}>
+              {movieDetails?.tagline}
+            </Text>
             <HStack>
               <UnorderedList
                 display={"flex"}
@@ -80,7 +82,9 @@ const DetailsCmp = ({
                 gap={5}
               >
                 {movieDetails?.genres?.map((genre, idx) => (
-                  <ListItem key={idx}>{genre.name}</ListItem>
+                  <ListItem key={idx} fontSize={{ base: "14px", lg: "16px" }}>
+                    {genre.name}
+                  </ListItem>
                 ))}
               </UnorderedList>
               <Text>|</Text>
@@ -99,10 +103,14 @@ const DetailsCmp = ({
                   : "N/A"}
               </Text>
             </Box>
-            <Text fontSize={{ base: "lg", md: "xl" }} pt={4}>
+            <Text
+              fontSize={{ base: "14px", lg: "16px" }}
+              fontWeight={"semibold"}
+              pt={4}
+            >
               Overview
             </Text>
-            <Text fontSize={{ base: "md", md: "lg" }}>
+            <Text fontSize={{ base: "13px", lg: "16px" }}>
               {movieDetails?.overview}
             </Text>
 
@@ -110,17 +118,22 @@ const DetailsCmp = ({
               {productionCrew &&
                 sliceCrew.map((crew) => (
                   <ListItem key={crew.id}>
-                    <Text fontSize={{ base: "", md: "lg" }} fontWeight="bold">
+                    <Text
+                      fontSize={{ base: "14px", lg: "16px" }}
+                      fontWeight="bold"
+                    >
                       {crew.name}
                     </Text>
-                    <Text fontSize={{ base: "", md: "lg" }}>{crew.job}</Text>
+                    <Text fontSize={{ base: "14px", lg: "16px" }}>
+                      {crew.job}
+                    </Text>
                   </ListItem>
                 ))}
             </UnorderedList>
             <Button
               className="play-btn"
               px={5}
-              size={{ base: "sm", md: "md" }}
+              size={{ base: "sm", lg: "md" }}
               mt={2}
               onClick={playMovie}
             >
@@ -154,7 +167,6 @@ const DetailsCmp = ({
           backgroundSize="cover"
           bgRepeat={"no-repeat"}
           width={"100%"}
-          h={{ base: "69vh", md: "56vh" }}
           py={8}
           px={{ base: 4, md: 8 }}
           templateColumns="repeat(4, 1fr)"

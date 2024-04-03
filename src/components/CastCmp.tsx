@@ -52,8 +52,7 @@ const CastCmp = ({ castResult }: Props) => {
                   width={200}
                   height={200}
                   style={{
-                    borderTopLeftRadius: "5.2px",
-                    borderTopRightRadius: "5.2px",
+                    borderRadius: "5.2px",
                   }}
                 />
               ) : (
@@ -61,8 +60,7 @@ const CastCmp = ({ castResult }: Props) => {
                   w={{ base: 150, md: 200 }}
                   height={{ base: 240, md: 300 }}
                   style={{
-                    borderTopLeftRadius: "5.2px",
-                    borderTopRightRadius: "5.2px",
+                    borderRadius: "5.2px",
                   }}
                   bgColor={"gray.900"}
                   textAlign={"center"}
@@ -71,12 +69,27 @@ const CastCmp = ({ castResult }: Props) => {
                 </Box>
               )}
               <Box p={2} w={{ base: 150, md: 200 }} h={{ base: 137, md: 115 }}>
-                <Text fontWeight={"bold"}>{cast.name}</Text>
-                <Text>{cast.character}</Text>
+                <Text
+                  fontWeight={"bold"}
+                  fontSize={{ base: "13px", md: "16px" }}
+                >
+                  {cast.name}
+                </Text>
+                <Text
+                  fontSize={{ base: "13px", md: "16px" }}
+                  noOfLines={1}
+                  w={["121px", "100%"]}
+                >
+                  {cast.character}
+                </Text>
                 {cast.roles && cast.roles.length > 0 && (
-                  <Box>
-                    <Text>{cast.roles[0].character}</Text>
-                    <Text>{`${cast.roles[0].episode_count} Episodes`}</Text>
+                  <Box w={["121px", "100%"]}>
+                    <Text fontSize={{ base: "13px", md: "16px" }} noOfLines={1}>
+                      {cast.roles[0].character}
+                    </Text>
+                    <Text
+                      fontSize={{ base: "13px", md: "16px" }}
+                    >{`${cast.roles[0].episode_count} Episodes`}</Text>
                   </Box>
                 )}
               </Box>

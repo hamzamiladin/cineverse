@@ -59,7 +59,7 @@ const Banner = ({ cineverseOriginals }: Props) => {
     <Box mt={12} w={{ base: "97%", md: "90%" }}>
       <Swiper
         pagination={{ type: "progressbar" }}
-        autoplay={{ delay: 3500, disableOnInteraction: false }}
+        // autoplay={{ delay: 3500, disableOnInteraction: false }}
         modules={[Pagination]}
         className="mySwiper"
       >
@@ -74,8 +74,10 @@ const Banner = ({ cineverseOriginals }: Props) => {
               backgroundSize: "cover",
               minHeight: "60vh",
               ...(window.innerWidth <= 768 && {
-                backgroundSize: "contain",
+                backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+                width: "100%",
                 backgroundImage: `url(${baseUrl}${movie.poster_path})`,
               }),
             }}
@@ -111,7 +113,8 @@ const Banner = ({ cineverseOriginals }: Props) => {
                 fontSize={"lg"}
                 display={{ base: "none", md: "block" }}
               >
-                {movie.overview}
+                {movie.overview &&
+                  movie.overview.slice(0, movie.overview.indexOf(".") + 1)}
               </Text>
               <Flex gap={6} mt={3}>
                 {/* <Button

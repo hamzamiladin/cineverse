@@ -1,6 +1,6 @@
-import { Box } from "@chakra-ui/react";
+import { Box, useMediaQuery } from "@chakra-ui/react";
 import { Movie, SeriesDetails } from "../../typings";
-import { Pagination, Navigation } from "swiper/modules";
+import { Pagination, Navigation, FreeMode } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import style from "./styles/swiper.module.css";
 // swiper styles
@@ -17,6 +17,7 @@ interface Props {
 
 const MovieRow = ({ movies, series }: Props) => {
   const router = useRouter();
+  const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
 
   const movieType = "movie";
   const seriesType = "tv";
@@ -43,8 +44,8 @@ const MovieRow = ({ movies, series }: Props) => {
       <Swiper
         slidesPerView={2}
         spaceBetween={7}
-        navigation={true}
-        modules={[Pagination, Navigation]}
+        navigation={isLargerThan768 ? true : false}
+        modules={isLargerThan768 ? [Pagination, Navigation] : [FreeMode]}
         breakpoints={{
           640: {
             slidesPerView: 2,
@@ -67,34 +68,36 @@ const MovieRow = ({ movies, series }: Props) => {
           }`,
         ]}
       >
-        {movies?.map((movie, idx) => (
-          <SwiperSlide
-            key={`movie-${movie.id}-${idx}`}
-            className={style.swiperSlide}
-            style={{
-              backgroundImage: `url(${baseUrl}${movie?.poster_path})`,
-              backgroundSize: "contain",
-              backgroundRepeat: "no-repeat",
-              height: "44vh",
-              width: "13vw",
-            }}
-            onClick={() => handleClick(movie)}
-          />
-        ))}
-        {series?.map((seriesItem, idx) => (
-          <SwiperSlide
-            key={`series-${seriesItem.id}-${idx}`}
-            className={style.swiperSlide}
-            style={{
-              backgroundImage: `url(${baseUrl}${seriesItem?.poster_path})`,
-              backgroundSize: "contain",
-              backgroundRepeat: "no-repeat",
-              height: "44vh",
-              width: "13vw",
-            }}
-            onClick={() => handleClick(seriesItem)}
-          />
-        ))}
+        <Box px={3}>
+          {movies?.map((movie, idx) => (
+            <SwiperSlide
+              key={`movie-${movie.id}-${idx}`}
+              className={style.swiperSlide}
+              style={{
+                backgroundImage: `url(${baseUrl}${movie?.poster_path})`,
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+                height: "44vh",
+                width: "13vw",
+              }}
+              onClick={() => handleClick(movie)}
+            />
+          ))}
+          {series?.map((seriesItem, idx) => (
+            <SwiperSlide
+              key={`series-${seriesItem.id}-${idx}`}
+              className={style.swiperSlide}
+              style={{
+                backgroundImage: `url(${baseUrl}${seriesItem?.poster_path})`,
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+                height: "44vh",
+                width: "13vw",
+              }}
+              onClick={() => handleClick(seriesItem)}
+            />
+          ))}
+        </Box>
       </Swiper>
     </Box>
   );
