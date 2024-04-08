@@ -97,7 +97,7 @@ const CastCmp = ({ castResult }: Props) => {
           ))}
       </Flex>
       <Box>
-        <Button colorScheme="red" variant="outline" onClick={handleClick}>
+        <Button colorScheme="blue" variant="outline" onClick={handleClick}>
           FULL CAST
         </Button>
       </Box>

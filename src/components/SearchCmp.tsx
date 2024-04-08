@@ -23,7 +23,7 @@ const SearchCmp = () => {
           <Flex flexDir={"row"} gap={7} alignItems={"center"}>
             <Input
               variant="flushed"
-              focusBorderColor="orange.400"
+              focusBorderColor="blue.400"
               placeholder="search"
               color="gray.200"
               w={"40vw"}
@@ -33,7 +33,7 @@ const SearchCmp = () => {
             <Button
               className="search-btn"
               backgroundColor={"transparent"}
-              color={"orange.500"}
+              color={"blue.500"}
               size={{ base: "sm", md: "md" }}
               mt={{ base: 2 }}
               onClick={handleSearch}

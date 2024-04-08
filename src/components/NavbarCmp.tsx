@@ -19,6 +19,8 @@ import {
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { AiOutlineUser } from "react-icons/ai";
 import { useSession, signOut, signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
 // import "./styles/index.css";
 
 interface Props {
@@ -31,6 +33,7 @@ const links: Array<Props> = [
   { name: "Home", url: "/browse" },
   { name: "TV Shows", url: "/browse/tv" },
   { name: "Movies", url: "/browse/movies" },
+  { name:"M8", url:"/test"},
   { name: "My List", url: "/browse/my-list" },
 ];
 
@@ -43,7 +46,7 @@ const NavLink = (props: Props) => {
 };
 
 export default function NavbarCmp() {
-  const { data: session } = useSession();
+  const { user, signOut } = useUser();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -59,11 +62,11 @@ export default function NavbarCmp() {
             bg={"gray.300"}
           />
           <HStack spacing={8} alignItems={"center"}>
-            <Box>
+            <Box pt={2}>
               <Image
-                src="/images/cineverse-logo.png"
+                src="/images/moviem8-logo.png"
                 alt="logo"
-                boxSize={{ base: "60%", md: "35%" }}
+                boxSize={{ base: "50%", md: "35%" }}
               />
             </Box>
             <HStack
@@ -95,8 +98,8 @@ export default function NavbarCmp() {
                 <MenuItem>Account</MenuItem>
                 <MenuItem>Settings</MenuItem>
                 <MenuDivider />
-                {session && session.user && (
-                  <MenuItem onClick={() => signOut}>Sign Out</MenuItem>
+                {user && (
+                  <MenuItem onClick={() => signOut()}>Sign Out</MenuItem>
                 )}
               </MenuList>
             </Menu>
@@ -122,31 +125,11 @@ export default function NavbarCmp() {
 }
 
 export const LoginNav = () => {
-  const { data: session } = useSession();
+    const router = useRouter();
 
-  const toast = useToast({
-    position: "top",
-    containerStyle: {
-      zIndex: 9,
-    },
-  });
-  ("");
-
-  const handleSignIn = async () => {
-    const result = await signIn("google");
-    if (result?.error) {
-      return toast({
-        status: "error",
-        description: `Oops! there was an issue that action, please try again`,
-      });
-    } else if (result?.ok) {
-      toast({
-        status: "success",
-        description: "You have successfully logged in",
-      });
-      /* router.push("/"); */
-    }
-  };
+    const handleSignIn = () => {
+      router.push('/sign-in');
+    };
 
   return (
     <Box className="container">
@@ -158,12 +141,12 @@ export const LoginNav = () => {
         className="card"
         bg={"#000"}
       >
-        <Box>
-          <Image src="/images/cineverse-logo.png" alt="logo" boxSize={"35%"} />
+        <Box pt={2}>
+          <Image src="/images/moviem8-logo.png" alt="logo" boxSize={"35%"} />
         </Box>
         <Box>
           <Button
-            colorScheme="orange"
+            colorScheme="blue"
             variant="outline"
             size={"sm"}
             onClick={handleSignIn}

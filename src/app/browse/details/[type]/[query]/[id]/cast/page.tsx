@@ -98,7 +98,7 @@ const CastPage = ({ castResult, crewResult }: Props) => {
             my={5}
             isRound={true}
             variant="outline"
-            colorScheme="red"
+            colorScheme="blue"
             fontSize="md"
             aria-label="Done"
             onClick={prevPage}
@@ -225,7 +225,7 @@ const CastPage = ({ castResult, crewResult }: Props) => {
             </Flex>
             <Flex mt={5} justifyContent="space-around" alignItems="center">
               <Button
-                colorScheme="red"
+                colorScheme="blue"
                 variant="outline"
                 onClick={previousPage}
                 disabled={currentPage === 1}
@@ -233,7 +233,7 @@ const CastPage = ({ castResult, crewResult }: Props) => {
                 PREVIOUS
               </Button>
               <Button
-                colorScheme="red"
+                colorScheme="blue"
                 variant="outline"
                 onClick={nextPage}
                 disabled={endIdx >= castDetails.length}

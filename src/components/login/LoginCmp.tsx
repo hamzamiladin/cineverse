@@ -7,58 +7,38 @@ import {
   useBreakpointValue,
   useToast,
 } from "@chakra-ui/react";
-import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import VideoBackground from '../VideoBackground';
 
 const LoginCmp = () => {
-  const { data: session } = useSession();
-
   const router = useRouter();
-  const toast = useToast({
-    position: "top",
-    containerStyle: {
-      zIndex: 9,
-    },
-  });
 
-  const handleSignIn = async () => {
-    const result = await signIn("google");
-    if (result?.error) {
-      return toast({
-        status: "error",
-        description: `Oops! there was an issue that action, please try again`,
-      });
-    } else if (result?.ok) {
-      toast({
-        status: "success",
-        description: "You have successfully logged in",
-      });
-      /* router.push("/"); */
-    }
+  const handleSignIn = () => {
+    router.push('/sign-in');
   };
 
   return (
+    <VideoBackground src="/coverr-blurred-lights-3400-1080p.mp4">
     <Flex
       w={"full"}
       h={"94vh"}
-      backgroundImage={"url('images/projector.jpg')"}
-      backgroundSize={"cover"}
-      backgroundPosition={"center center"}
+      align={"center"}
+      justify={"center"}
+      px={useBreakpointValue({ base: 4, md: 8 })}
     >
       <VStack
         w={"full"}
         justify={"center"}
         px={useBreakpointValue({ base: 4, md: 8 })}
-        bgGradient={"linear(to-r, blackAlpha.600, transparent)"}
       >
-        <Stack maxW={"3xl"} align={"flex-start"} spacing={6}>
+<Stack maxW={"3xl"} align={"flex-start"} spacing={6}>
           <Text
             color={"white"}
             fontWeight={700}
             lineHeight={1.2}
             fontSize={useBreakpointValue({ base: "3xl", md: "4xl" })}
           >
-            Unlimited movies, TV shows, and more.
+            Explore cinema with AI
           </Text>
           <Text
             color={"white"}
@@ -66,22 +46,23 @@ const LoginCmp = () => {
             lineHeight={1.2}
             fontSize={useBreakpointValue({ base: "2xl", md: "3xl" })}
           >
-            Watch anywhere.
+            Find your perfect movie match instantly.
           </Text>
           <Stack direction={"row"}>
             <Button
-              bg={"orange.600"}
+              bg={"blue.600"}
               rounded={"lg"}
               color={"white"}
               _hover={{ bg: "orange.800" }}
               onClick={handleSignIn}
             >
-              Show me more
+              Get Started
             </Button>
           </Stack>
         </Stack>
       </VStack>
     </Flex>
+</VideoBackground>
   );
 };
 

@@ -9,9 +9,10 @@ import NavbarCmp from "@/components/NavbarCmp";
 import { LoginNav } from "@/components/NavbarCmp";
 import { usePathname } from "next/navigation";
 import { register } from "swiper/element/bundle";
+import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata: Metadata = {
-  title: "Cineverse Movie App",
+  title: "MovieM8",
   description: "Get latest movies",
 };
 
@@ -23,6 +24,13 @@ export default function RootLayout({
   const pathname = usePathname();
   register();
 
+  let navbarComponent = null;
+  if (pathname === "/") {
+    navbarComponent = <LoginNav />;
+  } else if (pathname !== "/m8") { // Exclude navbar on "/test" route
+    navbarComponent = <NavbarCmp />;
+  }
+
   return (
     <html lang="en">
       <head>
@@ -30,16 +38,16 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
         />
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        <title>Cineverse</title>
+        <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2" />
+        <title>MovieM8</title>
       </head>
       <body style={{ background: "#212121" }} className={inter.className}>
-        <SessionProvider>
+        <ClerkProvider>
           <ChakraProvider>
-            {pathname === "/" ? <LoginNav /> : <NavbarCmp />}
+            {navbarComponent}
             {children}
           </ChakraProvider>
-        </SessionProvider>
+        </ClerkProvider>
       </body>
     </html>
   );

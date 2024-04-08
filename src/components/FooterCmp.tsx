@@ -16,7 +16,7 @@ const Logo = (props: any) => {
   return (
     <Box>
       <Image
-        src="/images/cineverse-logo.png"
+        src="/images/moviem8-logo.png"
         alt="logo"
         width={200}
         height={20}
@@ -77,9 +77,6 @@ export default function FooterCmp() {
             <Box>
               <Logo color={useColorModeValue("gray.700", "white")} />
             </Box>
-            <Text fontSize={"sm"}>
-              © 2022 Chakra Templates. All rights reserved
-            </Text>
             <Stack direction={"row"} spacing={6}>
               <SocialButton label={"Twitter"} href={"#"}>
                 <FaTwitter />

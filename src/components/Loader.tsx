@@ -14,16 +14,14 @@ const Loader = () => {
       justifyContent="center"
     >
       <Box className="loader">
-        <Text color="red.500" fontWeight="extrabold" fontSize="4xl">
-          <span className="letter letter1">C</span>
-          <span className="letter letter2">I</span>
-          <span className="letter letter3">N</span>
-          <span className="letter letter4">E</span>
-          <span className="letter letter5">V</span>
-          <span className="letter letter6">E</span>
-          <span className="letter letter7">R</span>
-          <span className="letter letter8">S</span>
-          <span className="letter letter9">E</span>
+        <Text color="blue.500" fontWeight="extrabold" fontSize="4xl">
+          <span className="letter letter1">M</span>
+          <span className="letter letter2">0</span>
+          <span className="letter letter3">V</span>
+          <span className="letter letter4">I</span>
+          <span className="letter letter5">E</span>
+          <span className="letter letter6">M</span>
+          <span className="letter letter7">8</span>
           <span className="letter letter10">.</span>
           <span className="letter letter10">.</span>
           <span className="letter letter10">.</span>
